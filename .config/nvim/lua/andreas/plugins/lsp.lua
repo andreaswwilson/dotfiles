@@ -12,6 +12,7 @@ return {
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "williamboman/mason-lspconfig.nvim" },
 			{ "williamboman/mason.nvim" },
+			{ "jayp0521/mason-null-ls.nvim" },
 		},
 
 		event = "VeryLazy",
@@ -19,8 +20,18 @@ return {
 			local lspconfig = require("lspconfig")
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "bashls", "lua_ls", "jqls", "gopls", "marksman", "terraformls" },
+				ensure_installed = {
+					"bashls",
+					"lua_ls",
+					"jqls",
+					"gopls",
+					"marksman",
+					"terraformls",
+					"pyright",
+					"ruff_lsp",
+				},
 			})
+
 			local cmp_nvim_lsp = require("cmp_nvim_lsp")
 			local keymap = vim.keymap -- for conciseness
 
@@ -74,13 +85,14 @@ return {
 			end
 
 			-- Default setup
-			local servers = { "lua_ls", "jqls", "bashls", "gopls", "marksman" }
+			local servers = { "lua_ls", "jqls", "bashls", "gopls", "marksman", "ruff_lsp", "pyright" }
 			for _, server in ipairs(servers) do
 				lspconfig[server].setup({
 					capabilities = capabilities,
 					on_attach = on_attach,
 				})
 			end
+
 			-- configure terraformls
 			lspconfig.terraformls.setup({
 				capabilities = capabilities,
