@@ -15,7 +15,7 @@ opt.undofile = true -- save undo history
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
 -- line wrapping
-opt.wrap = false -- disable line wrapping
+opt.wrap = true -- enable line wrapping
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
@@ -38,8 +38,8 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 -- ]s next misspelled word
 -- z= - suggestion
 -- zg - add to spell
-vim.opt.spelllang = "en_us"
-vim.opt.spell = true
+opt.spelllang = "en_us"
+opt.spell = true
 
 -- turn off swap file
 opt.swapfile = false

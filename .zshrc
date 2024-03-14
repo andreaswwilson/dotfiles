@@ -148,7 +148,7 @@ alias vim="nvim"
 alias v="vim"
 alias sed="gsed"
 alias awk="gawk"
-alias cat="bat"
+alias cat="bat --style=grid,header"
 alias ls="lsd"
 alias l="ls -la"
 alias la="ls -a"
@@ -156,3 +156,6 @@ alias lt="ls --tree"
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(atuin init zsh)"
+eval "$(atuin init zsh)"

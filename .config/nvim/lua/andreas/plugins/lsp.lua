@@ -7,6 +7,14 @@ return {
 		end,
 	},
 	{
+		"ray-x/lsp_signature.nvim",
+		event = "VeryLazy",
+		opts = {},
+		config = function(_, opts)
+			require("lsp_signature").setup(opts)
+		end,
+	},
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ "hrsh7th/cmp-nvim-lsp" },
@@ -50,7 +58,6 @@ return {
 			local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 			vim.lsp.handlers["textdocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-
 			vim.lsp.handlers["textdocument/signaturehelp"] =
 				vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 			-- used to enable autocompletion (assign to every lsp server config)
@@ -64,7 +71,7 @@ return {
 			end
 
 			-- Default setup
-			local servers = { "lua_ls", "jqls", "bashls", "gopls", "marksman", "ruff_lsp", "pyright" }
+			local servers = { "lua_ls", "jqls", "bashls", "marksman", "ruff_lsp", "pyright" }
 			for _, server in ipairs(servers) do
 				lspconfig[server].setup({
 					capabilities = capabilities,
@@ -72,10 +79,23 @@ return {
 				})
 			end
 
+			-- go
+			lspconfig.gopls.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+
 			-- configure terraformls
 			lspconfig.terraformls.setup({
 				capabilities = capabilities,
-				on_attach = on_attach,
+				on_attach = function(client, bufnr)
+					require("lsp_signature").on_attach({
+						bind = true, -- This is mandatory, otherwise border config won't get registered.
+						handler_opts = {
+							border = "rounded",
+						},
+					}, bufnr)
+				end,
 				filetypes = { "terraform" }, -- Specify the filetypes for which terraformls should be activated
 			})
 			-- lua_ls
