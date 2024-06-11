@@ -13,7 +13,10 @@ export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-plugins=(git zsh-autosuggestions)
+plugins=(
+  zsh-autosuggestions
+  git
+)
 
 # User configuration
 eval "$(fzf --zsh)"
