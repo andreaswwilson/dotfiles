@@ -15,6 +15,7 @@ source $ZSH/oh-my-zsh.sh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 plugins=(
   zsh-autosuggestions
+  direnv
   git
 )
 
