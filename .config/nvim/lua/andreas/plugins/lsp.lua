@@ -83,6 +83,11 @@ return {
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
+        settings = {
+          gopls = {
+            gofumpt = true
+          }
+        }
 			})
 
 			-- configure terraformls
