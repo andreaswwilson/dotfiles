@@ -39,6 +39,13 @@ return {
 				replace = "sr", -- Replace surrounding
 				update_n_lines = "sn", -- Update `n_lines`
 			},
+			-- dont add space
+			custom_surroundings = {
+				["("] = { input = { "%b()", "^.().*().$" }, output = { left = "(", right = ")" } },
+				["["] = { input = { "%b[]", "^.().*().$" }, output = { left = "[", right = "]" } },
+				["{"] = { input = { "%b{}", "^.().*().$" }, output = { left = "{", right = "}" } },
+				["<"] = { input = { "%b<>", "^.().*().$" }, output = { left = "<", right = ">" } },
+			},
 		},
 	},
 }

@@ -7,7 +7,7 @@ return {
 		{
 			"<leader>cf",
 			function()
-				require("conform").format({ lsp_fallback = true, timeout_ms = 3000 })
+				require("conform").format({ lsp_format = "fallback", timeout_ms = 3000 })
 			end,
 			mode = { "n", "v" },
 			desc = "Format Injected Langs",
@@ -17,19 +17,19 @@ return {
 		local conform = require("conform")
 		conform.setup({
 			formatters_by_ft = {
-				lua = { "stylua" },
 				json = { "prettierd" },
-				yaml = { "prettierd" },
+				lua = { "stylua" },
 				markdown = { "prettierd" },
-				go = { "goimports", "gofumpt" },
 				python = { "ruff", "black" },
 				terraform = { "terraform_fmt" },
+				yaml = { "prettierd" },
+				go = { "gofumpt" },
 			},
 			-- format_on_save = {
 			-- 	lsp_fallback = true,
 			-- 	timeout_ms = 500,
 			-- 	async = false,
-			-- },
+			-- }
 		})
 	end,
 }
