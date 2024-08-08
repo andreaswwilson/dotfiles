@@ -9,7 +9,7 @@ return {
 			vim.list_extend({ "--python-executable", virtual .. "/bin/python3" }, lint.linters.mypy.args)
 		lint.linters_by_ft = {
 			go = { "golangcilint" },
-			python = { "mypy" },
+			python = { "ruff" },
 			lua = { "luacheck" },
 			yaml = { "yamllint" },
 			json = { "jsonlint" },
