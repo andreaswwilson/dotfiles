@@ -7,7 +7,6 @@ fi
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -36,6 +35,7 @@ alias ls="lsd"
 alias l="ls -la"
 alias la="ls -a"
 alias lt="ls --tree"
+alias skatt="pass show skatt -c"
 
 
 # Powerlevel10k
@@ -44,3 +44,6 @@ source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH="/usr/local/sbin:$PATH:$HOME/go/bin"
+
+# Added by GDK bootstrap
+#source /Users/m00474/.asdf/asdf.sh
