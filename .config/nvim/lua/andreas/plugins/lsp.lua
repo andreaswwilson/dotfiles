@@ -1,140 +1,135 @@
 return {
-	{
-		"williamboman/mason.nvim",
-		cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
-		config = function()
-			require("mason").setup()
-		end,
-	},
-	{
-		"ray-x/lsp_signature.nvim",
-		event = "VeryLazy",
-		opts = {},
-		config = function(_, opts)
-			require("lsp_signature").setup(opts)
-		end,
-	},
-	{
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "williamboman/mason-lspconfig.nvim" },
-			{ "williamboman/mason.nvim" },
-			{ "jayp0521/mason-null-ls.nvim" },
-		},
+  {
+    "VonHeikemen/lsp-zero.nvim",
+    branch = "v4.x",
+    lazy = true,
+    config = false,
+  },
+  {
+    "williamboman/mason.nvim",
+    lazy = false,
+    config = true,
+  },
 
-		event = "VeryLazy",
-		keys = {
-			{ "gr", "<cmd>Telescope lsp_references<CR>", desc = "Show LSP references" },
-			{ "gD", vim.lsp.buf.declaration, desc = "Go to declaration" },
-			{ "gd", "<cmd>Telescope lsp_definitions<CR>", desc = "Show LSP definitions" },
-			{ "gi", "<cmd>Telescope lsp_implementations<CR>", desc = "Show LSP implementations" },
-			{ "gt", "<cmd>Telescope lsp_type_definitions<CR>", desc = "Show LSP type definitions" },
-			{ "<leader>ca", vim.lsp.buf.code_action, desc = "See available code actions" },
-			{ "<leader>cr", vim.lsp.buf.rename, desc = "Smart rename" },
-			{ "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", desc = "Show buffer diagnostics" },
-			{ "<leader>d", vim.diagnostic.open_float, desc = "Show line diagnostics" },
-			{ "[d", vim.diagnostic.goto_prev, desc = "Go to previous diagnostic" },
-			{ "]d", vim.diagnostic.goto_next, desc = "Go to next diagnostic" },
-			{ "K", vim.lsp.buf.hover, desc = "Show documentation for what is under cursor" },
-			{ "<leader>rs", ":LspRestart<CR>", desc = "Restart LSP" },
-		},
-		config = function()
-			local lspconfig = require("lspconfig")
+  -- Autocompletion
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      { "L3MON4D3/LuaSnip" },
+    },
+    config = function()
+      local cmp = require("cmp")
+      local cmp_action = require('lsp-zero').cmp_action()
+      local cmp_format = require('lsp-zero').cmp_format({ details = true })
+      require('luasnip.loaders.from_vscode').lazy_load()
 
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"bashls",
-					"lua_ls",
-					"jqls",
-					"gopls",
-					"marksman",
-					"terraformls",
-					"pyright",
-					"ruff_lsp",
-				},
-			})
+      cmp.setup({
+        sources = {
+          { name = "nvim_lsp" },
+          { name = 'luasnip' },
+          { name = "buffer" },
+          { name = "path" },
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-d>"] = cmp.mapping.scroll_docs(4),
+          ["<C-f>"] = cmp_action.luasnip_jump_forward(),
+          ["<C-b>"] = cmp_action.luasnip_jump_backward(),
+          ["<cr>"] = cmp.mapping.confirm({ select = false }),
+        }),
+        snippet = {
+          expand = function(args)
+            vim.snippet.expand(args.body)
+          end,
+        },
+        --- (Optional) Show source name in completion menu
+        formatting = cmp_format,
+      })
+    end,
+  },
 
-			local cmp_nvim_lsp = require("cmp_nvim_lsp")
+  -- LSP
+  {
+    "neovim/nvim-lspconfig",
+    cmd = { "LspInfo", "LspInstall", "LspStart" },
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "williamboman/mason.nvim" },
+      { "williamboman/mason-lspconfig.nvim" },
+    },
+    config = function()
+      local lsp_zero = require("lsp-zero")
 
-			vim.lsp.handlers["textdocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-			vim.lsp.handlers["textdocument/signaturehelp"] =
-				vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-			-- used to enable autocompletion (assign to every lsp server config)
-			local capabilities = cmp_nvim_lsp.default_capabilities()
+      -- lsp_attach is where you enable features that only work
+      -- if there is a language server active in the file
+      local lsp_attach = function(client, bufnr)
+        local opts = { buffer = bufnr }
 
-			-- Change the Diagnostic symbols in the sign column (gutter)
-			local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-			for type, icon in pairs(signs) do
-				local hl = "DiagnosticSign" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-			end
+        vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+        vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
+        vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+        vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementation()<cr>", opts)
+        vim.keymap.set("n", "go", "<cmd>Telescope lsp_type_definitions()<cr>", opts)
+        vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
+        vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+        vim.keymap.set("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+        vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+        vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+        vim.keymap.set("n", "<leader>d", "<cmd>Telescope diagnostics bufnr=0<cr>", opts)
+        vim.keymap.set("n", "<leader>D", "<cmd>vim.diagnostic.open_float<cr>", opts)
+      end
 
-			-- Default setup
-			local servers = { "lua_ls", "jqls", "bashls", "marksman", "ruff_lsp", "pyright" }
-			for _, server in ipairs(servers) do
-				lspconfig[server].setup({
-					capabilities = capabilities,
-					on_attach = on_attach,
-				})
-			end
+      lsp_zero.extend_lspconfig({
+        sign_text = true,
+        lsp_attach = lsp_attach,
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+      })
 
-			-- go
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-        settings = {
-          gopls = {
-            gofumpt = true
-          }
-        }
-			})
+      require('mason-lspconfig').setup({
+        handlers = {
+          function(server_name)
+            require('lspconfig')[server_name].setup({})
+          end,
+          lua_ls = function()
+            require('lspconfig').lua_ls.setup({
+              settings = {
+                Lua = {}
+              },
+              on_init = function(client)
+                local uv = vim.uv or vim.loop
+                local path = client.workspace_folders[1].name
 
-			-- configure terraformls
-			lspconfig.terraformls.setup({
-				capabilities = capabilities,
-				on_attach = function(client, bufnr)
-					require("lsp_signature").on_attach({
-						bind = true, -- This is mandatory, otherwise border config won't get registered.
-						handler_opts = {
-							border = "rounded",
-						},
-					}, bufnr)
-				end,
-				filetypes = { "terraform" }, -- Specify the filetypes for which terraformls should be activated
-			})
-			-- lua_ls
-			--
-			local runtime_path = vim.split(package.path, ";")
-			table.insert(runtime_path, "lua/?.lua")
-			table.insert(runtime_path, "lua/?/init.lua")
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-				settings = {
-					Lua = {
-						runtime = {
-							-- Tell the language server which version of Lua you're using
-							version = "LuaJIT",
-							path = runtime_path,
-						},
-						diagnostics = {
-							-- Get the language server to recognize the `vim` global
-							globals = { "vim" },
-						},
-						workspace = {
-							library = {
-								-- Make the server aware of Neovim runtime files
-								vim.fn.expand("$VIMRUNTIME/lua"),
-								vim.fn.stdpath("config") .. "/lua",
-							},
-							checkThirdParty = false,
-						},
-						telemetry = {
-							enable = false,
-						},
-					},
-				},
-			})
-		end,
-	},
+                -- Don't do anything if there is a project local config
+                if uv.fs_stat(path .. '/.luarc.json')
+                    or uv.fs_stat(path .. '/.luarc.jsonc')
+                then
+                  return
+                end
+
+                -- Apply neovim specific settings
+                local lua_opts = lsp_zero.nvim_lua_ls()
+
+                client.config.settings.Lua = vim.tbl_deep_extend(
+                  'force',
+                  client.config.settings.Lua,
+                  lua_opts.settings.Lua
+                )
+              end,
+            })
+          end,
+        },
+      })
+    end,
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts)
+      require("lsp_signature").setup(opts)
+    end,
+  },
 }
