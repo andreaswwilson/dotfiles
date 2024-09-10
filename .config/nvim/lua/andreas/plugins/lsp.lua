@@ -91,7 +91,6 @@ return {
       require('mason-lspconfig').setup({
         ensure_installed = {
           "bashls",
-          "gitlab_ci_ls",
           "gopls",
           "jsonnet_ls",
           "luau_lsp",
