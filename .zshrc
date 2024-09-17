@@ -12,9 +12,14 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
+plugins=(
+  git
+  direnv
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
 source $ZSH/oh-my-zsh.sh
+
 
 eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/config.json)"
 eval "$(atuin init zsh)"
@@ -22,6 +27,14 @@ eval "$(atuin init zsh)"
 # Alias
 alias vim="nvim"
 alias v="nvim"
+alias sed="gsed"
+alias awk="gawk"
+alias cat="bat --style=grid,header"
+alias ls="lsd"
+alias l="ls -la"
+alias la="ls -a"
+alias lt="ls --tree"
+alias skatt="pass show skatt -c"
 
-
+export PATH="/usr/local/sbin:$PATH:$HOME/go/bin"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
