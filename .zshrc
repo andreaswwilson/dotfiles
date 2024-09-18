@@ -37,4 +37,5 @@ alias lt="ls --tree"
 alias skatt="pass show skatt -c"
 
 export PATH="/usr/local/sbin:$PATH:$HOME/go/bin"
+export HOMEBREW_CASK_OPTS=--appdir=~/Applications
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
