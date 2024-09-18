@@ -10,13 +10,6 @@ return {
 	window_background_opacity = 1.0,
 	-- window_decorations = "RESIZE",
 	native_macos_fullscreen_mode = true,
-	keys = {
-		{
-			key = "f",
-			mods = "CTRL",
-			action = wezterm.action.ToggleFullScreen,
-		},
-	},
 	mouse_bindings = {
 		-- Ctrl-click will open the link under the mouse cursor
 		{

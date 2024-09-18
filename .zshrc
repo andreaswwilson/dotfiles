@@ -1,41 +1,74 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 eval $(/opt/homebrew/bin/brew shellenv)
+export HOMEBREW_CASK_OPTS=--appdir=~/Applications
 
-export ZSH="$HOME/.oh-my-zsh"
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
 
-# Uncomment one of the following lines to change the auto-update behavior
-zstyle ':omz:update' mode auto      # update automatically without asking
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  direnv
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-)
-source $ZSH/oh-my-zsh.sh
+# Add powerlevel10k 
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 
+# plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+zinit light softmoth/zsh-vim-mode
+zinit snippet OMZP::git
+zinit snippet OMZP::direnv
 
-eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/config.json)"
-eval "$(atuin init zsh)"
+# Load completions
+autoload -Uz compinit && compinit
 #
+zinit cdreplay -q
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# History
+HISTSIZE=10000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+#
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+
 # Alias
 alias vim="nvim"
 alias v="nvim"
+alias ls='ls --color'
 alias sed="gsed"
 alias awk="gawk"
 alias cat="bat --style=grid,header"
-alias ls="lsd"
-alias l="ls -la"
-alias la="ls -a"
-alias lt="ls --tree"
-alias skatt="pass show skatt -c"
 
-export PATH="/usr/local/sbin:$PATH:$HOME/go/bin"
-export HOMEBREW_CASK_OPTS=--appdir=~/Applications
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
