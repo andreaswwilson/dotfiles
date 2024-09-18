@@ -1,7 +1,7 @@
 -- set leader key to space
 vim.g.mapleader = " "
-
-vim.keymap.set("x", "<leader>p", [["_dP]]) -- Don't overwrite register when pasting
+vim.api.nvim_set_keymap("i", "jj", "<Esc>", { noremap = false })
+vim.keymap.set("x", "p", [["_dP]]) -- Don't overwrite register when pasting
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set("n", "x", '"_x') -- delete single char without copy into register
 
