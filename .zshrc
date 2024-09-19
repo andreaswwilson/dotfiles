@@ -34,6 +34,13 @@ zinit light softmoth/zsh-vim-mode
 zinit snippet OMZP::git
 zinit snippet OMZP::direnv
 
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
 # Load completions
 autoload -Uz compinit && compinit
 #
