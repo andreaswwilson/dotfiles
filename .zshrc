@@ -72,7 +72,9 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Alias
 alias vim="nvim"
 alias v="nvim"
-alias ls='ls --color'
+alias ls="lsd"
+alias l="ls -la"
+alias lt="ls --tree"
 alias sed="gsed"
 alias awk="gawk"
 alias cat="bat --style=grid,header"
