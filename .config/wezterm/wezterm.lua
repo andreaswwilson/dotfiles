@@ -10,14 +10,14 @@ return {
 	window_background_opacity = 1.0,
 	-- window_decorations = "RESIZE",
 	native_macos_fullscreen_mode = true,
-	mouse_bindings = {
-		-- Ctrl-click will open the link under the mouse cursor
-		{
-			event = { Up = { streak = 1, button = "Left" } },
-			mods = "CTRL",
-			action = wezterm.action.OpenLinkAtMouseCursor,
-		},
-	},
+	-- mouse_bindings = {
+	-- 	-- Ctrl-click will open the link under the mouse cursor
+	-- 	{
+	-- 		event = { Up = { streak = 1, button = "Left" } },
+	-- 		mods = "CTRL",
+	-- 		action = wezterm.action.OpenLinkAtMouseCursor,
+	-- 	},
+	-- },
 	wezterm.on("gui-startup", function(cmd)
 		local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
 		window:gui_window():maximize()

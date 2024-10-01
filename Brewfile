@@ -1,5 +1,6 @@
 tap "hashicorp/tap"
 tap "homebrew/bundle"
+brew "azure-cli", link: false
 brew "bat"
 brew "direnv"
 brew "fd"
