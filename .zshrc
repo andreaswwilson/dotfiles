@@ -33,9 +33,6 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light softmoth/zsh-vim-mode
 zinit snippet OMZP::git
-#
-# Load direnv in turbo mode (deferred)
-zinit ice wait '0'
 zinit snippet OMZP::direnv
 
 if type brew &>/dev/null

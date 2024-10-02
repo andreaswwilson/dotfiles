@@ -6,11 +6,19 @@ local lspconfig = require "lspconfig"
 -- EXAMPLE
 local servers = { "lua_ls" }
 local nvlsp = require "nvchad.configs.lspconfig"
+--
+-- Custom on_attach function
+local custom_on_attach = function(client, bufnr)
+  -- Call the original on_attach function
+  nvlsp.on_attach(client, bufnr)
+
+  vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", { buffer = bufnr, desc = "LSP Telescope references" })
+end
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
-    on_attach = nvlsp.on_attach,
+    on_attach = custom_on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
   }
@@ -24,7 +32,7 @@ end
 -- }
 
 lspconfig.gopls.setup {
-  on_attach = nvlsp.on_attach,
+  on_attach = custom_on_attach,
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
   settings = {

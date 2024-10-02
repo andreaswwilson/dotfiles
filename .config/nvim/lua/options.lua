@@ -11,3 +11,6 @@ vim.o.undodir = os.getenv "HOME" .. "/.vim/undodir"
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldlevelstart = 99
+
+-- turn off swap file
+vim.o.swapfile = false

@@ -5,4 +5,9 @@ return {
 	initial_cols = 120,
 	initial_rows = 40,
 	window_background_opacity = 1.0,
+
+	keys = {
+		{ key = "LeftArrow", mods = "SUPER", action = wezterm.action.ActivateTabRelative(-1) },
+		{ key = "RightArrow", mods = "SUPER", action = wezterm.action.ActivateTabRelative(1) },
+	},
 }
