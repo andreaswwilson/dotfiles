@@ -3,8 +3,13 @@ require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
 
--- EXAMPLE
-local servers = { "lua_ls" }
+-- Servers with standard setup
+local servers = {
+  "bashls",
+  "lua_ls",
+  "jsonls",
+  "yamlls",
+}
 local nvlsp = require "nvchad.configs.lspconfig"
 --
 -- Custom on_attach function

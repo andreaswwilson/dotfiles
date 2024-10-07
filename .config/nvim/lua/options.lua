@@ -10,7 +10,13 @@ vim.o.undodir = os.getenv "HOME" .. "/.vim/undodir"
 -- Folding
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-vim.o.foldlevelstart = 99
-
+vim.o.foldtext = ""
+vim.o.foldlevel = 0
+vim.o.foldnestmax = 3
 -- turn off swap file
 vim.o.swapfile = false
+
+-- backspace
+vim.o.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
+
+--
