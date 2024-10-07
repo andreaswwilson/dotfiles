@@ -6,8 +6,9 @@ local lspconfig = require "lspconfig"
 -- Servers with standard setup
 local servers = {
   "bashls",
-  "lua_ls",
   "jsonls",
+  "lua_ls",
+  "terraform-ls",
   "yamlls",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
