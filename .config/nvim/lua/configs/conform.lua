@@ -2,7 +2,7 @@ local options = {
   formatters_by_ft = {
     lua = { "stylua" },
     go = { "gofumpt" },
-
+    terraform = { "terraform_fmt" },
     -- css = { "prettier" },
     -- html = { "prettier" },
   },

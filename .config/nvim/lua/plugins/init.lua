@@ -5,11 +5,10 @@ return {
   },
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre", -- uncomment for format on save
+    event = "BufWritePre",
     opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -21,11 +20,32 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
+        "bash",
+        "dockerfile",
+        "gitcommit",
+        "gitignore",
         "go",
+        "gomod",
+        "gosum",
+        "json",
         "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "terraform",
+        "toml",
         "vim",
         "vimdoc",
+        "xml",
+        "yaml",
       },
+      auto_install = true,
     },
+  },
+  -- Show context of the current function
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    opts = { mode = "cursor", max_lines = 3 },
   },
 }

@@ -83,3 +83,4 @@ alias cat="bat --style=grid,header"
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
