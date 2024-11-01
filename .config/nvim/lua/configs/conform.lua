@@ -1,6 +1,7 @@
 local options = {
   formatters_by_ft = {
-    go = { "gofumpt" },
+    go = { "goimports", "gofumpt" },
+    json = { "fixjson"},
     lua = { "stylua" },
     sh = { "shfmt" },
     terraform = { "terraform_fmt" },

@@ -8,6 +8,7 @@ local servers = {
   "bashls",
   "jsonls",
   "lua_ls",
+  "pyright",
   "terraformls",
   "yamlls",
 }
@@ -44,7 +45,7 @@ lspconfig.gopls.setup {
   settings = {
     gopls = {
       completeUnimported = true,
-      usePlaceholders = true,
+      -- usePlaceholders = true,
     },
   },
 }

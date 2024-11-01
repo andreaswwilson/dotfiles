@@ -7,7 +7,7 @@ fi
 
 eval $(/opt/homebrew/bin/brew shellenv)
 export HOMEBREW_CASK_OPTS=--appdir=~/Applications
-
+eval "$(fzf --zsh)"
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -38,7 +38,6 @@ zinit snippet OMZP::direnv
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-
   autoload -Uz compinit
   compinit
 fi
@@ -63,7 +62,7 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
-#
+
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' menu no
@@ -81,7 +80,7 @@ alias sed="gsed"
 alias awk="gawk"
 alias cat="bat --style=grid,header"
 
-eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(atuin init zsh)"
+
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
