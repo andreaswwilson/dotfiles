@@ -21,6 +21,7 @@ map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 map("n", "gr", "<cmd>Telescope lsp_references<cr>")
+map("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<cr>")
 map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "telescope diagnostics" })
 map("n", "<leader>e", "<cmd>:lua MiniFiles.open()<cr>", { desc = "Mini files" })
 

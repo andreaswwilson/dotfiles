@@ -6,6 +6,7 @@ local lspconfig = require "lspconfig"
 -- Servers with standard setup
 local servers = {
   "bashls",
+  "gopls",
   "jsonls",
   "lua_ls",
   "pyright",
@@ -13,14 +14,6 @@ local servers = {
   "yamlls",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
-vim.diagnostic.config {
-  virtual_text = false,
-}
-
--- Show line diagnostics automatically in hover window
-vim.o.updatetime = 250
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
---
 -- Custom on_attach function
 local custom_on_attach = function(client, bufnr)
   -- Call the original on_attach function
@@ -44,15 +37,3 @@ end
 --   on_init = nvlsp.on_init,
 --   capabilities = nvlsp.capabilities,
 -- }
-
-lspconfig.gopls.setup {
-  on_attach = custom_on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
-  settings = {
-    gopls = {
-      completeUnimported = true,
-      -- usePlaceholders = true,
-    },
-  },
-}
