@@ -1,7 +1,9 @@
 require "nvchad.mappings"
 
--- add yours here
+-- disable stuff from nvchad
+vim.keymap.del("n", "<leader>x")
 
+-- add yours here
 local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -19,6 +21,7 @@ map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 map("n", "gr", "<cmd>Telescope lsp_references<cr>")
+map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "telescope diagnostics" })
 map("n", "<leader>e", "<cmd>:lua MiniFiles.open()<cr>", { desc = "Mini files" })
 
 -- buffers
@@ -33,6 +36,6 @@ map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev search r
 map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
----- better indenting
+-- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
