@@ -18,3 +18,6 @@ vim.o.swapfile = false
 
 -- backspace
 vim.o.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
+
+-- sessions
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

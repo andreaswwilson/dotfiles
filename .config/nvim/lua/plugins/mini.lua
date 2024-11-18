@@ -1,6 +1,8 @@
 return {
-  "echasnovski/mini.files",
-  version = false,
-  event = "VeryLazy",
-  opts = {},
+  {
+    "echasnovski/mini.files",
+    version = false,
+    event = "VeryLazy",
+    opts = {},
+  },
 }
