@@ -15,9 +15,8 @@ map("v", "<d-j>", ":m '>+1<cr>gv=gv", { desc = "move down" })
 map("v", "<a-k>", ":m '<-2<cr>gv=gv", { desc = "move up" })
 
 -- map("n", "gr", "<cmd>Telescope lsp_references<cr>")
-map("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<cr>")
-map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "telescope diagnostics" })
-map("n", "<leader>e", "<cmd>:lua MiniFiles.open()<cr>", { desc = "Mini files" })
+-- map("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<cr>")
+-- map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "telescope diagnostics" })
 
 -- buffers
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })

@@ -1,7 +1,5 @@
 return {
 	{
-		'nvim-telescope/telescope.nvim',
-	}
-
-
+		"nvim-telescope/telescope.nvim",
+	},
 }
