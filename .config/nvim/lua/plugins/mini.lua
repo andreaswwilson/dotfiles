@@ -26,10 +26,27 @@ return { -- Collection of various small independent plugins/modules
 		require("mini.completion").setup()
 		require("mini.extra").setup()
 		require("mini.pairs").setup()
-		require("mini.pick").setup()
+		-- require("mini.pick").setup()
 		require("mini.git").setup()
 		require("mini.diff").setup()
 		require("mini.icons").setup()
 		require("mini.bufremove").setup()
+
+		require("mini.pick").setup({
+			options = {
+				live_grep = { rg_args = { "-i" } },
+			},
+			window = {
+				config = {
+					border = "single",
+				},
+			},
+		})
+		MiniPick.registry.grep_live_align = function()
+			MiniPick.builtin.grep_live({}, {
+				source = { show = show_align_on_nul },
+				window = { config = { width = math.floor(0.816 * vim.o.columns) } },
+			})
+		end
 	end,
 }

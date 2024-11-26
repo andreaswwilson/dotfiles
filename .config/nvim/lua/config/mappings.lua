@@ -4,9 +4,9 @@ map("i", "jk", "<ESC>")
 
 map("x", "p", [["_dP]]) -- Don't overwrite register when pasting
 map("n", "x", '"_x') -- delete single char without copy into register
+map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Move Lines
---
 map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
 map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
 map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
@@ -36,8 +36,8 @@ wk.add({
 
 	-- Find mappings
 	{ "<leader>ff", "<cmd>Pick files<cr>", desc = "Find files" },
-	{ "<leader>f,", "<cmd>Pick buffers<cr>", desc = "Find buffer" },
-	{ "<leader>fw", "<cmd>Pick grep_live<cr>", desc = "Find in files" },
+	{ "<leader>fb", "<cmd>Pick buffers<cr>", desc = "Find buffer" },
+	{ "<leader>fw", "<cmd>Pick grep_live_align<cr>", desc = "Find in files" },
 	{ "<leader>fW", "<cmd>Pick buf_lines scope='current' preserve_order=true<cr>", desc = "Find in current buffer" },
 	{ "<leader>fr", "<cmd>Pick resume<cr>", desc = "Resume picker" },
 	{ "<leader>fo", "<cmd>Pick oldfiles<cr>", desc = "Resume picker" },

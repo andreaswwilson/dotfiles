@@ -69,6 +69,7 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 # Alias
 alias vim="nvim"
