@@ -41,7 +41,7 @@ local function split_nav(resize_or_move, key)
 		end),
 	}
 end
-config.color_scheme = "Tokyo Night"
+config.color_scheme = "rose-pine"
 config.font_size = 14
 
 -- https://wezfurlong.org/wezterm/config/lua/keyassignment/SwitchToWorkspace.html
@@ -53,41 +53,21 @@ config.keys = {
 	-- Splitting
 	{
 		mods = "CMD|SHIFT",
-		key = "V",
+		key = "v",
 		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
 	},
 
 	{
 		mods = "CMD|SHIFT",
-		key = "H",
+		key = "h",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-	},
-	{
-		mods = "CMD|SHIFT",
-		key = "M",
-		action = wezterm.action.TogglePaneZoomState,
 	},
 	-- show the pane selection mode, but have it swap the active and selected panes
 	{
 		mods = "CMD|SHIFT",
-		key = "S",
+		key = "s",
 		action = wezterm.action.PaneSelect({
 			mode = "SwapWithActive",
-		}),
-	},
-	{
-		key = "R",
-		mods = "CMD|SHIFT",
-		action = wezterm.action.PromptInputLine({
-			description = "Enter new name for tab",
-			action = wezterm.action_callback(function(window, _, line)
-				-- line will be `nil` if they hit escape without entering anything
-				-- An empty string if they just hit enter
-				-- Or the actual line of text they wrote
-				if line then
-					window:active_tab():set_title(line)
-				end
-			end),
 		}),
 	},
 	-- Prompt for a name to use for a new workspace and switch to it.
