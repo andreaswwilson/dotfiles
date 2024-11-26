@@ -17,10 +17,6 @@ map("v", "<a-k>", ":m '<-2<cr>gv=gv", { desc = "move up" })
 -- map("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<cr>")
 -- map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "telescope diagnostics" })
 
--- buffers
-map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
---
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next search result" })
 map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
@@ -59,6 +55,14 @@ wk.add({
 		desc = "Delete buffer",
 	},
 	{ "<leader>bo", "<cmd>%bdelete|edit #<cr>", desc = "Close other buffers" },
+	{ "<S-h>", "<cmd>bprevious<cr>", desc = "Previous buffer" },
+	{ "<S-l>", "<cmd>bnext<cr>", desc = "Next buffer" },
+
+	-- Windows
+	{ "<C-h>", "<C-w>h", { noremap = true, silent = true } },
+	{ "<C-l>", "<C-w>l", { noremap = true, silent = true } },
+	{ "<C-j>", "<C-w>j", { noremap = true, silent = true } },
+	{ "<C-k>", "<C-w>k", { noremap = true, silent = true } },
 
 	{ "<leader>d", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Diagnostic open float" },
 })

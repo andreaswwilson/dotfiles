@@ -27,6 +27,9 @@ return { -- Collection of various small independent plugins/modules
 		require("mini.extra").setup()
 		require("mini.pairs").setup()
 		require("mini.pick").setup()
+		require("mini.git").setup()
+		require("mini.diff").setup()
+		require("mini.icons").setup()
 		require("mini.bufremove").setup()
 	end,
 }
