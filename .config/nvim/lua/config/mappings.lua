@@ -14,7 +14,6 @@ map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 map("v", "<d-j>", ":m '>+1<cr>gv=gv", { desc = "move down" })
 map("v", "<a-k>", ":m '<-2<cr>gv=gv", { desc = "move up" })
 
--- map("n", "gr", "<cmd>Telescope lsp_references<cr>")
 -- map("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<cr>")
 -- map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "telescope diagnostics" })
 
@@ -33,3 +32,33 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
+
+local wk = require("which-key")
+wk.add({
+	{ "<leader>f", group = "find" },
+	{ "<leader>b", group = "buffer" },
+
+	-- Find mappings
+	{ "<leader>ff", "<cmd>Pick files<cr>", desc = "Find files" },
+	{ "<leader>f,", "<cmd>Pick buffers<cr>", desc = "Find buffer" },
+	{ "<leader>fw", "<cmd>Pick grep_live<cr>", desc = "Find in files" },
+	{ "<leader>fW", "<cmd>Pick buf_lines scope='current' preserve_order=true<cr>", desc = "Find in current buffer" },
+	{ "<leader>fr", "<cmd>Pick resume<cr>", desc = "Resume picker" },
+	{ "<leader>fo", "<cmd>Pick oldfiles<cr>", desc = "Resume picker" },
+	{ "<leader>fd", "<cmd>Pick diagnostic<cr>", desc = "Find diagnostics" },
+	{ "<leader>fk", "<cmd>Pick keymaps<cr>", desc = "Find keymaps" },
+	{ "<leader>fh", "<cmd>Pick help<cr>", desc = "Find help" },
+	{ "<leader>fc", "<cmd>Pick commands<cr>", desc = "Find commands" },
+
+	-- Buffer mappings
+	{
+		"<leader>bd",
+		function()
+			require("mini.bufremove").delete()
+		end,
+		desc = "Delete buffer",
+	},
+	{ "<leader>bo", "<cmd>%bdelete|edit #<cr>", desc = "Close other buffers" },
+
+	{ "<leader>d", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Diagnostic open float" },
+})

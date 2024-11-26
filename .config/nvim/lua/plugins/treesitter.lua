@@ -1,19 +1,30 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
-	main = "nvim-treesitter.configs", -- Sets main module to use for opts
-	opts = {
-		-- Autoinstall languages that are not installed
-		auto_install = true,
-		highlight = {
-			enable = true,
-		},
-		indent = { enable = true },
+	{
+		"nvim-treesitter/nvim-treesitter",
+		event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
+		build = ":TSUpdate",
+
+		config = function()
+			local treesitter = require("nvim-treesitter.configs")
+
+			treesitter.setup({ -- enable syntax highlighting
+				highlight = {
+					enable = true,
+				},
+				sync_install = false,
+				-- enable indentation
+				indent = { enable = true },
+				-- ensure these language parsers are installed
+				ensure_installed = {},
+				-- Automatically install missing parsers when entering buffer
+				auto_install = true,
+			})
+		end,
 	},
-	-- There are additional nvim-treesitter modules that you can use to interact
-	-- with nvim-treesitter. You should go explore a few and see what interests you:
-	--
-	--    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-	--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-	--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+	-- Show context of the current function
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+		opts = { mode = "cursor", max_lines = 3 },
+	},
 }

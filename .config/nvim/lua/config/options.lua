@@ -16,13 +16,11 @@ opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 -- line wrapping
 opt.wrap = true -- enable line wrapping
 
--- Folding
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldtext = ""
-opt.foldlevel = 99
-opt.foldnestmax = 3
-
+-- Add UFO folding configuration
+opt.foldcolumn = "0"
+opt.foldlevel = 99 -- Using ufo provider need a large value
+opt.foldlevelstart = 99
+opt.foldenable = true
 -- turn off swap file
 opt.swapfile = false
 
