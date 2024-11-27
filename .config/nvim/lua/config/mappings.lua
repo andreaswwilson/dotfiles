@@ -1,4 +1,7 @@
 local map = vim.keymap.set
+-- Clear highlights on search when pressing <Esc> in normal mode
+--  See `:help hlsearch`
+map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
@@ -57,6 +60,24 @@ wk.add({
 	{ "<leader>bo", "<cmd>%bdelete|edit #<cr>", desc = "Close other buffers" },
 	{ "<S-h>", "<cmd>bprevious<cr>", desc = "Previous buffer" },
 	{ "<S-l>", "<cmd>bnext<cr>", desc = "Next buffer" },
+
+	-- smart splits
+	-- Smart Splits Resize Mappings
+	{ "<A-h>", require("smart-splits").resize_left, desc = "Resize split left" },
+	{ "<A-j>", require("smart-splits").resize_down, desc = "Resize split down" },
+	{ "<A-k>", require("smart-splits").resize_up, desc = "Resize split up" },
+	{ "<A-l>", require("smart-splits").resize_right, desc = "Resize split right" },
+	-- Moving between splits
+	{ "<C-h>", require("smart-splits").move_cursor_left, desc = "Move cursor left" },
+	{ "<C-j>", require("smart-splits").move_cursor_down, desc = "Move cursor down" },
+	{ "<C-k>", require("smart-splits").move_cursor_up, desc = "Move cursor up" },
+	{ "<C-l>", require("smart-splits").move_cursor_right, desc = "Move cursor right" },
+	{ "<C-\\>", require("smart-splits").move_cursor_previous, desc = "Move cursor to previous split" },
+	-- Swapping buffers between windows
+	{ "<leader><leader>h", require("smart-splits").swap_buf_left, desc = "Swap buffer left" },
+	{ "<leader><leader>j", require("smart-splits").swap_buf_down, desc = "Swap buffer down" },
+	{ "<leader><leader>k", require("smart-splits").swap_buf_up, desc = "Swap buffer up" },
+	{ "<leader><leader>l", require("smart-splits").swap_buf_right, desc = "Swap buffer right" },
 
 	{ "<leader>d", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Diagnostic open float" },
 })
