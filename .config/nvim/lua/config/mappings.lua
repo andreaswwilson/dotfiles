@@ -33,7 +33,7 @@ local wk = require("which-key")
 wk.add({
 	{ "<leader>f", group = "find" },
 	{ "<leader>b", group = "buffer" },
-
+	{ "<leader>x", group = "trouble" },
 	-- Find mappings
 	{ "<leader>ff", "<cmd>Pick files<cr>", desc = "Find files" },
 	{ "<leader>fb", "<cmd>Pick buffers<cr>", desc = "Find buffer" },
