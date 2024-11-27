@@ -23,25 +23,20 @@ return { -- Collection of various small independent plugins/modules
 		statusline.setup({})
 
 		require("mini.comment").setup()
-		require("mini.completion").setup()
+		require("mini.completion").setup({
+			window = {
+				info = { border = "double" },
+				signature = { border = "double" },
+			},
+		})
 		require("mini.extra").setup()
 		require("mini.pairs").setup()
-		-- require("mini.pick").setup()
 		require("mini.git").setup()
 		require("mini.diff").setup()
 		require("mini.icons").setup()
 		require("mini.bufremove").setup()
 
-		require("mini.pick").setup({
-			options = {
-				live_grep = { rg_args = { "-i" } },
-			},
-			window = {
-				config = {
-					border = "single",
-				},
-			},
-		})
+		require("mini.pick").setup({})
 		MiniPick.registry.grep_live_align = function()
 			MiniPick.builtin.grep_live({}, {
 				source = { show = show_align_on_nul },

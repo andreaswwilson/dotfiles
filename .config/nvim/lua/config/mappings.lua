@@ -58,11 +58,5 @@ wk.add({
 	{ "<S-h>", "<cmd>bprevious<cr>", desc = "Previous buffer" },
 	{ "<S-l>", "<cmd>bnext<cr>", desc = "Next buffer" },
 
-	-- Windows
-	{ "<C-h>", "<C-w>h", { noremap = true, silent = true } },
-	{ "<C-l>", "<C-w>l", { noremap = true, silent = true } },
-	{ "<C-j>", "<C-w>j", { noremap = true, silent = true } },
-	{ "<C-k>", "<C-w>k", { noremap = true, silent = true } },
-
 	{ "<leader>d", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Diagnostic open float" },
 })
