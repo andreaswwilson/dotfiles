@@ -6,13 +6,15 @@ return {
     dependencies = {
       {
         "rshkarin/mason-nvim-lint",
+        -- Install formatters from
+        -- https://mason-registry.dev/registry/list?search=category%3Aformatter
         opts = {
           ensure_installed = {
             "fixjson",
             "gofumpt",
             "goimports",
             "shfmt",
-            "stylelua",
+            "stylua",
           }
         }
       }
@@ -41,7 +43,7 @@ return {
       formatters_by_ft = {
         go = { "goimports", "gofumpt" },
         json = { "fixjson" },
-        lua = { "stylua" },
+        lua = { "stylue" },
         sh = { "shfmt" },
         terraform = { "terraform_fmt" },
         -- Conform can also run multiple formatters sequentially
