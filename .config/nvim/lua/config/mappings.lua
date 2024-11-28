@@ -14,8 +14,8 @@ map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
 map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
 map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
 map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-map("v", "<d-j>", ":m '>+1<cr>gv=gv", { desc = "move down" })
-map("v", "<a-k>", ":m '<-2<cr>gv=gv", { desc = "move up" })
+map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "move down" })
+map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "move up" })
 
 -- map("n", "<leader>d", "<cmd>lua vim.diagnostic.open_float()<cr>")
 -- map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "telescope diagnostics" })
@@ -62,11 +62,6 @@ wk.add({
 	{ "<S-l>", "<cmd>bnext<cr>", desc = "Next buffer" },
 
 	-- smart splits
-	-- Smart Splits Resize Mappings
-	{ "<A-h>", require("smart-splits").resize_left, desc = "Resize split left" },
-	{ "<A-j>", require("smart-splits").resize_down, desc = "Resize split down" },
-	{ "<A-k>", require("smart-splits").resize_up, desc = "Resize split up" },
-	{ "<A-l>", require("smart-splits").resize_right, desc = "Resize split right" },
 	-- Moving between splits
 	{ "<C-h>", require("smart-splits").move_cursor_left, desc = "Move cursor left" },
 	{ "<C-j>", require("smart-splits").move_cursor_down, desc = "Move cursor down" },
