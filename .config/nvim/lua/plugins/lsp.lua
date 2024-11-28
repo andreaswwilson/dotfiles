@@ -71,6 +71,23 @@ return {
               },
             })
           end,
+          -- Custom handler for terraformls to disable semantic tokens
+          ["terraformls"] = function()
+            require("lspconfig").terraformls.setup({
+              capabilities = {
+                textDocument = {
+                  foldingRange = {
+                    dynamicRegistration = false,
+                    lineFoldingOnly = true,
+                  },
+                },
+              },
+              -- Disable semantic tokens for terraformls
+              on_attach = function(client, _)
+                client.server_capabilities.semanticTokensProvider = nil
+              end,
+            })
+          end,
         },
       })
     end,
