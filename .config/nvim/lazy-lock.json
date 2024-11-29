@@ -19,10 +19,12 @@
   "nvim-ufo": { "branch": "main", "commit": "1ebb9ea3507f3a40ce8b0489fb259ab32b1b5877" },
   "nvim-web-devicons": { "branch": "master", "commit": "edbe0a65cfacbbfff6a4a1e98ddd60c28c560509" },
   "oil.nvim": { "branch": "master", "commit": "3c2de37accead0240fbe812f5ccdedfe0b973557" },
+  "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "promise-async": { "branch": "main", "commit": "119e8961014c9bfaf1487bf3c2a393d254f337e2" },
   "rose-pine": { "branch": "main", "commit": "07a887a7bef4aacea8c7caebaf8cbf808cdc7a8e" },
   "smart-splits.nvim": { "branch": "master", "commit": "d8b0e772a0244169534b1fd57c1660c9bf323d26" },
   "statuscol.nvim": { "branch": "main", "commit": "8822f76e105549620ef9c0d96e7b95aedf14c490" },
+  "todo-comments.nvim": { "branch": "main", "commit": "ae0a2afb47cf7395dc400e5dc4e05274bf4fb9e0" },
   "trouble.nvim": { "branch": "main", "commit": "46cf952fc115f4c2b98d4e208ed1e2dce08c9bf6" },
   "undotree": { "branch": "master", "commit": "78b5241191852ffa9bb5da5ff2ee033160798c3b" },
   "which-key.nvim": { "branch": "main", "commit": "9b365a6428a9633e3eeb34dbef1b791511c54f70" }
