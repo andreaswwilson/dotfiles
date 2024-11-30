@@ -34,17 +34,6 @@ return { -- Collection of various small independent plugins/modules
     require("mini.diff").setup()
     require("mini.icons").setup()
     require("mini.bufremove").setup()
-    require("mini.sessions").setup({
-      autoread = true
-    })
-    require('mini.tabline').setup()
-
-    require("mini.pick").setup({})
-    MiniPick.registry.grep_live_align = function()
-      MiniPick.builtin.grep_live({}, {
-        source = { show = show_align_on_nul },
-        window = { config = { width = math.floor(0.816 * vim.o.columns) } },
-      })
-    end
+    -- require('mini.tabline').setup()
   end,
 }

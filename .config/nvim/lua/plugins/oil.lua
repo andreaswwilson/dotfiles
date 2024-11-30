@@ -1,5 +1,10 @@
 return {
   "stevearc/oil.nvim",
+  init = function()
+    -- disable netrw
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+  end,
   opts = {
     default_file_explorer = true,
     delete_to_trash = true,
@@ -11,6 +16,7 @@ return {
         return name == '..' or name == '.git'
       end,
     },
+    watch_for_changes = true,
     win_options = {
       wrap = true,
     }
