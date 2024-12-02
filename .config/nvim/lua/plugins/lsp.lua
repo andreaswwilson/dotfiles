@@ -38,7 +38,7 @@ return {
           vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
           vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
           vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
-          vim.keymap.set("n", "<leader>d", "<cmd>lua vim.diagnostic.open:float()<cr>", opts)
+          -- vim.keymap.set("n", "<leader>d", "<cmd>lua vim.diagnostic.open:float()<cr>", opts)
           vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
           vim.keymap.set("n", "cr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
           vim.keymap.set("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
