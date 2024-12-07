@@ -9,7 +9,7 @@ return {
   opts = {
     preset = "minimal",
     options = {
-      multilines = true,
+      -- multilines = true,
       show_source = true,
     },
   },

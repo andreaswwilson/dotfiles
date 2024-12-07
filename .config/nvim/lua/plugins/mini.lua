@@ -34,6 +34,7 @@ return { -- Collection of various small independent plugins/modules
     require("mini.diff").setup()
     require("mini.icons").setup()
     require("mini.bufremove").setup()
+    require("mini.sessions").setup()
     -- require('mini.tabline').setup()
   end,
 }

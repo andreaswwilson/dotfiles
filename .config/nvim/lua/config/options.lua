@@ -37,3 +37,4 @@ opt.termguicolors = true
 
 -- clipboard
 opt.clipboard:append("unnamedplus") -- use system clipboard as default register:wq
+opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal'

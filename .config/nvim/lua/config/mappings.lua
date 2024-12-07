@@ -4,6 +4,8 @@ local map = vim.keymap.set
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
+map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+map("i", "<C-Space>", "<Space>", { silent = true })
 
 map("x", "p", [["_dP]]) -- Don't overwrite register when pasting
 map("n", "x", '"_x')    -- delete single char without copy into register
