@@ -35,7 +35,6 @@ return {
     },
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },
-    terminal = { enabled = true },
     words = { enabled = true },
     styles = {
       notification = {

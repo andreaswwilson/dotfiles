@@ -143,6 +143,24 @@ config.keys = {
     mods = "CMD",
     action = wezterm.action.CloseCurrentPane({ confirm = false }),
   },
+  {
+    key = "F12",
+    action = wezterm.action_callback(function(_, pane)
+      local tab = pane:tab()
+      local panes = tab:panes_with_info()
+      if #panes == 1 then
+        local new_pane = pane:split({
+          direction = "Right",
+        })
+      elseif not panes[1].is_zoomed then
+        panes[1].pane:activate()
+        tab:set_zoomed(true)
+      elseif panes[1].is_zoomed then
+        tab:set_zoomed(false)
+        panes[2].pane:activate()
+      end
+    end),
+  },
   -- smart-splits.nvim
   split_nav("move", "h"),
   split_nav("move", "j"),
