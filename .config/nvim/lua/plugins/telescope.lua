@@ -7,6 +7,7 @@ return {
       build = "make",
     },
     "nvim-tree/nvim-web-devicons",
+    "cljoly/telescope-repo.nvim",
   },
   cmd = "Telescope",
 }

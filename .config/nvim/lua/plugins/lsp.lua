@@ -12,6 +12,7 @@ return {
     dependencies = {
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
+      { 'saghen/blink.cmp' },
     },
     init = function()
       -- Reserve a space in the gutter
@@ -19,12 +20,16 @@ return {
       vim.opt.signcolumn = "yes"
     end,
     config = function()
-      -- local lsp_defaults = require("lspconfig").util.default_config
+      local lsp_defaults = require("lspconfig").util.default_config
+      lsp_defaults.capabilities =
+          vim.tbl_deep_extend("force", lsp_defaults.capabilities, require('blink.cmp').get_lsp_capabilities())
 
       -- Add cmp_nvim_lsp capabilities settings to lspconfig
       -- This should be executed before you configure any language server
       -- lsp_defaults.capabilities =
       -- 	vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+      --
       -- LspAttach is where you enable features that only work
       -- if there is a language server active in the file
       vim.api.nvim_create_autocmd("LspAttach", {

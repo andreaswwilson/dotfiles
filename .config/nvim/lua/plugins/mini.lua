@@ -23,12 +23,12 @@ return { -- Collection of various small independent plugins/modules
     statusline.setup({})
 
     require("mini.comment").setup()
-    require("mini.completion").setup({
-      window = {
-        info = { border = "double" },
-        signature = { border = "double" },
-      },
-    })
+    -- require("mini.completion").setup({
+    --   window = {
+    --     info = { border = "double" },
+    --     signature = { border = "double" },
+    --   },
+    -- })
     require("mini.extra").setup()
     require("mini.git").setup()
     require("mini.diff").setup()
