@@ -1,9 +1,4 @@
 return {
-  {
-    "williamboman/mason.nvim",
-    lazy = false,
-    opts = {},
-  },
   -- LSP
   {
     "neovim/nvim-lspconfig",
@@ -12,7 +7,15 @@ return {
     dependencies = {
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
-      { 'saghen/blink.cmp' },
+
+      -- { 'saghen/blink.cmp' },
+      { 'L3MON4D3/LuaSnip' },
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'rafamadriz/friendly-snippets' },
     },
     init = function()
       -- Reserve a space in the gutter
@@ -20,16 +23,23 @@ return {
       vim.opt.signcolumn = "yes"
     end,
     config = function()
-      local lsp_defaults = require("lspconfig").util.default_config
-      lsp_defaults.capabilities =
-          vim.tbl_deep_extend("force", lsp_defaults.capabilities, require('blink.cmp').get_lsp_capabilities())
-
       -- Add cmp_nvim_lsp capabilities settings to lspconfig
       -- This should be executed before you configure any language server
-      -- lsp_defaults.capabilities =
-      -- 	vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
-
-      --
+      -- Also enable ufo folding
+      local lspconfig_defaults = require('lspconfig').util.default_config
+      lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+        'force',
+        lspconfig_defaults.capabilities,
+        require('cmp_nvim_lsp').default_capabilities(),
+        {
+          textDocument = {
+            foldingRange = {
+              dynamicRegistration = false,
+              lineFoldingOnly = true,
+            },
+          },
+        }
+      )
       -- LspAttach is where you enable features that only work
       -- if there is a language server active in the file
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -50,6 +60,7 @@ return {
         end,
       })
 
+      require('mason').setup({})
       require("mason-lspconfig").setup({
         ensure_installed = {
           -- LSP
@@ -61,32 +72,16 @@ return {
           "terraformls",
           "marksman",
         },
+
         handlers = {
           -- this first function is the "default handler"
           -- it applies to every language server without a "custom handler"
           function(server_name)
-            require("lspconfig")[server_name].setup({
-              capabilities = {
-                textDocument = {
-                  foldingRange = {
-                    dynamicRegistration = false,
-                    lineFoldingOnly = true,
-                  },
-                },
-              },
-            })
+            require("lspconfig")[server_name].setup({})
           end,
           -- Custom handler for terraformls to disable semantic tokens
           ["terraformls"] = function()
             require("lspconfig").terraformls.setup({
-              capabilities = {
-                textDocument = {
-                  foldingRange = {
-                    dynamicRegistration = false,
-                    lineFoldingOnly = true,
-                  },
-                },
-              },
               -- Disable semantic tokens for terraformls
               on_attach = function(client, _)
                 client.server_capabilities.semanticTokensProvider = nil
@@ -94,6 +89,34 @@ return {
             })
           end,
         },
+      })
+
+      local cmp = require('cmp')
+      require('luasnip.loaders.from_vscode').lazy_load()
+      cmp.setup({
+        sources = {
+          { name = 'path' },
+          { name = 'nvim_lsp' },
+          { name = 'luasnip', keyword_length = 2 },
+          { name = 'buffer',  keyword_length = 3 },
+        },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
+        snippet = {
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          -- confirm completion item
+          ['<Enter>'] = cmp.mapping.confirm({ select = true }),
+          -- scroll up and down the documentation window
+          ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-d>'] = cmp.mapping.scroll_docs(4),
+          -- jump to the next snippet placeholder
+        }),
       })
     end,
   },
