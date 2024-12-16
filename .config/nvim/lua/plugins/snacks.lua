@@ -29,6 +29,9 @@ return {
         { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
       },
     },
+    indent = {
+      enabled = true,
+    },
     notifier = {
       enabled = true,
       timeout = 3000,
