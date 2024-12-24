@@ -1,57 +1,9 @@
 return {
   {
-    'saghen/blink.cmp',
-    lazy = false, -- lazy loading handled internally
-    -- optional: provides snippets for the snippet source
-    dependencies = {
-      'rafamadriz/friendly-snippets',
-      "mikavilpas/blink-ripgrep.nvim",
-      { 'L3MON4D3/LuaSnip', version = 'v2.*' },
-    },
-
-    -- use a release tag to download pre-built binaries
-    version = 'v0.*',
-
-    ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
-    opts = {
-      -- 'default' for mappings similar to built-in completion
-      -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
-      -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-      -- see the "default configuration" section below for full documentation on how to define
-      -- your own keymap.
-      keymap = { preset = 'enter' },
-
-      appearance = {
-        -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-        -- Adjusts spacing to ensure icons are aligned
-        nerd_font_variant = 'normal'
-      },
-      snippets = {
-        expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
-        active = function(filter)
-          if filter and filter.direction then
-            return require('luasnip').jumpable(filter.direction)
-          end
-          return require('luasnip').in_snippet()
-        end,
-        jump = function(direction) require('luasnip').jump(direction) end,
-      },
-      -- default list of enabled providers defined so that you can extend it
-      -- elsewhere in your config, without redefining it, via `opts_extend`
-      sources = {
-        default = { 'lsp', 'snippets', 'path', 'buffer', 'ripgrep' },
-        --
-        -- optionally disable cmdline completions
-        -- cmdline = {},
-      },
-
-      -- experimental signature help support
-      signature = { enabled = true },
-    },
-    -- allows extending the providers array elsewhere in your config
-    -- without having to redefine it
-    opts_extend = { "sources.default" }
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {},
+    config = function(_, opts) require 'lsp_signature'.setup(opts) end
   },
   -- LSP
   {
@@ -61,14 +13,13 @@ return {
     dependencies = {
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
-
-      { 'saghen/blink.cmp' },
+      -- { 'saghen/blink.cmp' },
       { 'L3MON4D3/LuaSnip' },
-      -- { 'hrsh7th/nvim-cmp' },
-      -- { 'hrsh7th/cmp-nvim-lsp' },
-      -- { 'hrsh7th/cmp-buffer' },
-      -- { 'hrsh7th/cmp-path' },
-      -- { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'saadparwaiz1/cmp_luasnip' },
       { 'rafamadriz/friendly-snippets' },
     },
     init = function()
@@ -84,8 +35,8 @@ return {
       lspconfig_defaults.capabilities = vim.tbl_deep_extend(
         'force',
         lspconfig_defaults.capabilities,
-        require('blink.cmp').get_lsp_capabilities(),
-        -- require('cmp_nvim_lsp').default_capabilities(),
+        -- require('blink.cmp').get_lsp_capabilities(),
+        require('cmp_nvim_lsp').default_capabilities(),
         {
           textDocument = {
             foldingRange = {
@@ -146,33 +97,33 @@ return {
         },
       })
 
-      -- local cmp = require('cmp')
-      -- require('luasnip.loaders.from_vscode').lazy_load()
-      -- cmp.setup({
-      -- 	sources = {
-      -- 		{ name = 'path' },
-      -- 		{ name = 'nvim_lsp' },
-      -- 		{ name = 'luasnip', keyword_length = 2 },
-      -- 		{ name = 'buffer',  keyword_length = 3 },
-      -- 	},
-      -- 	window = {
-      -- 		completion = cmp.config.window.bordered(),
-      -- 		documentation = cmp.config.window.bordered(),
-      -- 	},
-      -- 	snippet = {
-      -- 		expand = function(args)
-      -- 			require('luasnip').lsp_expand(args.body)
-      -- 		end,
-      -- 	},
-      -- 	mapping = cmp.mapping.preset.insert({
-      -- 		-- confirm completion item
-      -- 		['<Enter>'] = cmp.mapping.confirm({ select = true }),
-      -- 		-- scroll up and down the documentation window
-      -- 		['<C-u>'] = cmp.mapping.scroll_docs(-4),
-      -- 		['<C-d>'] = cmp.mapping.scroll_docs(4),
-      -- 		-- jump to the next snippet placeholder
-      -- 	}),
-      -- })
+      local cmp = require('cmp')
+      require('luasnip.loaders.from_vscode').lazy_load()
+      cmp.setup({
+        sources = {
+          { name = 'path' },
+          { name = 'nvim_lsp' },
+          { name = 'luasnip', keyword_length = 2 },
+          { name = 'buffer',  keyword_length = 3 },
+        },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
+        snippet = {
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          -- confirm completion item
+          ['<Enter>'] = cmp.mapping.confirm({ select = true }),
+          -- scroll up and down the documentation window
+          ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-d>'] = cmp.mapping.scroll_docs(4),
+          -- jump to the next snippet placeholder
+        }),
+      })
     end,
   },
 }
