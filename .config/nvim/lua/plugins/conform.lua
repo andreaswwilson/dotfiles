@@ -43,7 +43,7 @@ return {
       formatters_by_ft = {
         go = { "goimports", "gofumpt" },
         json = { "fixjson" },
-        lua = { "stylue" },
+        lua = { "stylua" },
         sh = { "shfmt" },
         terraform = { "terraform_fmt" },
         -- Conform can also run multiple formatters sequentially

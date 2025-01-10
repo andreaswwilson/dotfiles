@@ -29,7 +29,7 @@ require("lazy").setup({
   },
   checker = {
     enabled = true,
-    frequency = 86400, -- check for updates every 24 hours
+    frequency = 60 * 60 * 24 * 7, -- check for updates week
   },
   spec = {
     -- import your plugins
