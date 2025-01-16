@@ -38,9 +38,8 @@ wk.add({
 	{ "<leader>b", group = "buffer" },
 	{ "<leader>x", group = "trouble" },
 	-- Telescope
-	{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "files in cwd" },
-	{ "<leader>fw", "<cmd>Telescope live_grep<cr>", desc = "word in cwd" },
-	{ "<leader>fW", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "word in buffer" },
+	{ "<leader>ff", "<cmd>Telescope live_grep<cr>", desc = "word in cwd" },
+	{ "<leader>fF", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "word in buffer" },
 	{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "buffers" },
 	{ ",", "<cmd>Telescope buffers<cr>", desc = "buffers" },
 	{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "buffers" },
@@ -51,6 +50,11 @@ wk.add({
 	{ "<leader>fgc", "<cmd>Telescope git_commits<cr>", desc = "commits" },
 	{ "<leader>fgb", "<cmd>Telescope git_bcommits<cr>", desc = "buffer commits" },
 	{ "<leader>fgs", "<cmd>Telescope git_stash<cr>", desc = "stash" },
+	{
+		"<leader><leader>",
+		"<cmd>lua require('telescope').extensions.smart_open.smart_open({ cwd_only = true, filename_first = true })<CR>",
+		desc = "telescope: find_files",
+	},
 
 	-- Buffer mappings
 	{
@@ -71,11 +75,6 @@ wk.add({
 	{ "<C-k>", require("smart-splits").move_cursor_up, desc = "Move cursor up" },
 	{ "<C-l>", require("smart-splits").move_cursor_right, desc = "Move cursor right" },
 	{ "<C-\\>", require("smart-splits").move_cursor_previous, desc = "Move cursor to previous split" },
-	-- Swapping buffers between windows
-	{ "<leader><leader>h", require("smart-splits").swap_buf_left, desc = "Swap buffer left" },
-	{ "<leader><leader>j", require("smart-splits").swap_buf_down, desc = "Swap buffer down" },
-	{ "<leader><leader>k", require("smart-splits").swap_buf_up, desc = "Swap buffer up" },
-	{ "<leader><leader>l", require("smart-splits").swap_buf_right, desc = "Swap buffer right" },
 
 	{ "<leader>d", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Diagnostic open float" },
 })
