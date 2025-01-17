@@ -18,6 +18,7 @@ local direction_keys = {
 	h = "Left",
 	j = "Down",
 	k = "Up",
+
 	l = "Right",
 }
 
@@ -44,22 +45,47 @@ end
 config.color_scheme = "Tokyo Night"
 config.font_size = 14
 
--- https://wezfurlong.org/wezterm/config/lua/keyassignment/SwitchToWorkspace.html
-
--- wezterm.on("update-right-status", function(window, pane)
--- 	window:set_right_status(window:active_workspace())
--- end)
--- wezterm.on("update-status", function(window, pane)
--- 	window:set_left_status(window:active_workspace() .. ":")
--- end)
-wezterm.on("update-status", function(window, pane)
+local longest_workspace_name_length = 0
+wezterm.on("update-status", function(window, _)
 	local workspace = window:active_workspace()
-	local padded_workspace = string.format("%-15s", " " .. workspace)
+
+	-- Update longest_workspace_name_length if necessary
+	if #workspace > longest_workspace_name_length then
+		longest_workspace_name_length = #workspace
+	end
+
+	-- Calculate padding based on the longest workspace name
+	local padded_workspace = string.format("%-" .. (longest_workspace_name_length + 2) .. "s", " " .. workspace)
+
 	window:set_left_status(wezterm.format({
-		{ Background = { Color = "#c0caf5" } },
-		{ Foreground = { Color = "#414868" } },
+		{ Background = { Color = "#7aa2f7" } },
+		{ Foreground = { Color = "#1f2335" } },
 		{ Text = padded_workspace },
 	}))
+end)
+
+-- Optional: Handle workspace creation/rename events to update longest_workspace_name_length more accurately
+wezterm.on("workspace-created", function(window, workspace)
+	if #workspace > longest_workspace_name_length then
+		longest_workspace_name_length = #workspace
+		window:perform_action(wezterm.action.ReloadConfiguration, window:active_pane())
+	end
+end)
+
+wezterm.on("workspace-renamed", function(window, old_name, new_name)
+	if #new_name > longest_workspace_name_length then
+		longest_workspace_name_length = #new_name
+		window:perform_action(wezterm.action.ReloadConfiguration, window:active_pane())
+	elseif #old_name == longest_workspace_name_length then
+		-- Recalculate the longest name if the longest one was renamed
+		longest_workspace_name_length = 0
+		for _, ws in ipairs(window:workspace_list()) do
+			if #ws > longest_workspace_name_length then
+				longest_workspace_name_length = #ws
+			end
+		end
+		window:perform_action(wezterm.action.ReloadConfiguration, window:active_pane())
+	end
 end)
 config.window_decorations = "RESIZE"
 config.use_fancy_tab_bar = false
