@@ -24,9 +24,7 @@ return { -- Collection of various small independent plugins/modules
 
     require("mini.comment").setup()
     require("mini.extra").setup()
-    -- require("mini.git").setup()
     require("mini.diff").setup()
     require("mini.icons").setup()
-    -- require('mini.tabline').setup()
   end,
 }
