@@ -1,5 +1,5 @@
 return {
-  "stevearc/oil.nvim",
+  'stevearc/oil.nvim',
   init = function()
     -- disable netrw
     vim.g.loaded_netrw = 1
@@ -13,7 +13,7 @@ return {
       natural_order = true,
       show_hidden = true,
       is_always_hidden = function(name, _)
-        return name == ".." or name == ".git"
+        return name == '..' or name == '.git'
       end,
     },
     watch_for_changes = true,
@@ -21,14 +21,14 @@ return {
       wrap = true,
     },
   },
-  dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  dependencies = { { 'echasnovski/mini.icons', opts = {} } },
   keys = {
     {
-      "<leader>e",
+      '<leader>e',
       function()
-        require("oil").open()
+        require('oil').open()
       end,
-      desc = "Open oil",
+      desc = 'Open oil',
     },
   },
 }
