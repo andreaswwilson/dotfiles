@@ -5,8 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-eval $(/opt/homebrew/bin/brew shellenv)
-export HOMEBREW_CASK_OPTS=--appdir=~/Applications
 eval "$(fzf --zsh)"
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -35,12 +33,8 @@ zinit light Aloxaf/fzf-tab
 zinit light jeffreytse/zsh-vi-mode
 zinit snippet OMZP::direnv
 
-if type brew &>/dev/null
-then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-  autoload -Uz compinit
-  compinit
-fi
+autoload -Uz compinit
+compinit
 # Load completions
 autoload -Uz compinit && compinit
 #
@@ -77,8 +71,6 @@ alias v="nvim"
 alias ls="lsd"
 alias l="ls -la"
 alias lt="ls --tree"
-alias sed="gsed"
-alias awk="gawk"
 alias cat="bat --style=grid,header"
 
 eval "$(zoxide init --cmd cd zsh)"
