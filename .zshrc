@@ -64,6 +64,8 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+export EDITOR=nvim
+export VISUAL=nvim
 
 # Alias
 alias vim="nvim"
@@ -77,4 +79,5 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(atuin init zsh)"
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
 
