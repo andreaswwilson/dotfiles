@@ -44,6 +44,13 @@ end
 config.color_scheme = "Tokyo Night"
 config.font_size = 13
 
+config.window_padding = {
+  left = 0,
+  right = 0,
+  top = 0,
+  bottom = 30,
+}
+
 local longest_workspace_name_length = 0
 wezterm.on("update-status", function(window, _)
   local workspace = window:active_workspace()
@@ -86,7 +93,6 @@ wezterm.on("workspace-renamed", function(window, old_name, new_name)
     window:perform_action(wezterm.action.ReloadConfiguration, window:active_pane())
   end
 end)
-config.window_decorations = "RESIZE"
 config.use_fancy_tab_bar = false
 
 config.keys = {
