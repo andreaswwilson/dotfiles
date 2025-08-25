@@ -12,6 +12,7 @@ return {
         bash = { "shellcheck" },
         go = { "golangcilint" },
         markdown = { "markdownlint" },
+        ghaction = { "actionlint" },
         sh = { "shellcheck" },
         terraform = { "tflint" },
         tf = { "tflint" },

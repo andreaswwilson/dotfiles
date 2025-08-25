@@ -23,3 +23,11 @@ opt.foldcolumn = "0"
 opt.foldlevel = 99 -- Using ufo provider need a large value
 opt.foldlevelstart = 99
 opt.foldenable = true
+
+-- Filetype detection
+vim.filetype.add({
+  pattern = {
+    [".*github/workflows/.*"] = "ghaction",
+  },
+})
+vim.treesitter.language.register("yaml", "ghaction")

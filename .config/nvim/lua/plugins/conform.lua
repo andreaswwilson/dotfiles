@@ -31,8 +31,8 @@ return {
         json = { "fixjson" },
         lua = { "stylua" },
         sh = { "shfmt" },
-        terraform = { "terraform_fmt" },
-        tf = { "terraform_fmt" },
+        terraform = { "tofu_fmt" },
+        tf = { "tofu_fmt" },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --

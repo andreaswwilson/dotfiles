@@ -42,10 +42,10 @@ local function split_nav(resize_or_move, key)
   }
 end
 config.color_scheme = "Tokyo Night"
-config.font_size = 13
+config.font_size = 11
 
 config.window_padding = {
-  left = 0,
+  left = 20,
   right = 0,
   top = 0,
   bottom = 30,
@@ -116,77 +116,26 @@ config.keys = {
       mode = "SwapWithActive",
     }),
   },
-  -- Prompt for a name to use for a new workspace and switch to it.
-  {
-    key = "w",
-    mods = "CMD|SHIFT",
-    action = wezterm.action.PromptInputLine({
-      description = wezterm.format({
-        { Attribute = { Intensity = "Bold" } },
-        { Foreground = { AnsiColor = "Fuchsia" } },
-        { Text = "Enter name for new workspace" },
-      }),
-      action = wezterm.action_callback(function(window, pane, line)
-        -- line will be `nil` if they hit escape without entering anything
-        -- An empty string if they just hit enter
-        -- Or the actual line of text they wrote
-        if line then
-          window:perform_action(
-            wezterm.action.SwitchToWorkspace({
-              name = line,
-            }),
-            pane
-          )
-        end
-      end),
-    }),
-  },
-  -- Show the launcher in fuzzy selection mode and have it list all workspaces
-  -- and allow activating one.
-  {
-    key = "e",
-    mods = "CMD|SHIFT",
-    action = wezterm.action.ShowLauncherArgs({
-      flags = "FUZZY|WORKSPACES",
-    }),
-  },
-  -- Switch workspace
-  { key = "n", mods = "CMD|SHIFT", action = wezterm.action.SwitchWorkspaceRelative(1) },
-  { key = "p", mods = "CMD|SHIFT", action = wezterm.action.SwitchWorkspaceRelative(-1) },
-  -- Rename workspace
-  {
-    key = "r",
-    mods = "CMD|SHIFT",
-    action = wezterm.action.PromptInputLine({
-      description = wezterm.format({
-        { Attribute = { Intensity = "Bold" } },
-        { Foreground = { AnsiColor = "Fuchsia" } },
-        { Text = "Rename current workspace" },
-      }),
-      action = wezterm.action_callback(function(window, pane, line)
-        -- line will be `nil` if they hit escape without entering anything
-        -- An empty string if they just hit enter
-        -- Or the actual line of text they wrote
-        if line then
-          window:perform_action(wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line), pane)
-        end
-      end),
-    }),
-  },
-  -- change tabs
+
+  -- tabs
   {
     key = "h",
-    mods = "SUPER",
+    mods = "ALT|SHIFT",
     action = wezterm.action.ActivateTabRelative(-1),
   },
   {
     key = "l",
-    mods = "SUPER",
+    mods = "ALT|SHIFT",
     action = wezterm.action.ActivateTabRelative(1),
   },
   {
+    key = "t",
+    mods = "ALT|SHIFT",
+    action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+  },
+  {
     key = "w",
-    mods = "CMD",
+    mods = "ALT|SHIFT",
     action = wezterm.action.CloseCurrentPane({ confirm = false }),
   },
 }

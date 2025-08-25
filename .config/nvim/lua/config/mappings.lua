@@ -21,5 +21,8 @@ map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev search r
 map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 -- buffers
-map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+map("n", "<A-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+map("n", "<A-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+-- qlist
+map("n", "<leader>cn", ":cnext<CR>", { desc = "Next quicklist item", silent = true })
+map("n", "<leader>cp", ":cprevious<CR>", { desc = "Previous quicklist item", silent = true })
