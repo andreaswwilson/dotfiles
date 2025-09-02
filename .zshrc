@@ -86,3 +86,4 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(op completion zsh)"; compdef _op op
 
+export PATH="$HOME/.cargo/bin:$PATH"
