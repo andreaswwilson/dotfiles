@@ -1,6 +1,3 @@
-# Using glob patterns to include/exclude files or folders
---glob
-!.git/*
-
 --hidden
 --smart-case
+--glob=!**/.git/*

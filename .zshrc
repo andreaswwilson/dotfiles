@@ -76,6 +76,7 @@ alias l="ls -la"
 alias lt="ls --tree"
 alias cat="bat --style=grid,header"
 
+
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(atuin init zsh)"
 

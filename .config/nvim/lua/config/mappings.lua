@@ -26,3 +26,5 @@ map("n", "<A-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 -- qlist
 map("n", "<leader>cn", ":cnext<CR>", { desc = "Next quicklist item", silent = true })
 map("n", "<leader>cp", ":cprevious<CR>", { desc = "Previous quicklist item", silent = true })
+-- lsp
+map("n", "gR", vim.lsp.buf.rename, { desc = "LSP Rename" })

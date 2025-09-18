@@ -10,9 +10,10 @@ return {
       local lint = require("lint")
       lint.linters_by_ft = {
         bash = { "shellcheck" },
-        go = { "golangcilint" },
-        markdown = { "markdownlint" },
         ghaction = { "actionlint" },
+        go = { "golangcilint" },
+        json = { "jsonlint" },
+        markdown = { "markdownlint" },
         sh = { "shellcheck" },
         terraform = { "tflint" },
         tf = { "tflint" },
