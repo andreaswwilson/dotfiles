@@ -29,6 +29,7 @@ return {
       formatters_by_ft = {
         go = { "goimports", "gofumpt" },
         json = { "fixjson" },
+        json5 = { "prettierd", "prettier", stop_after_first = true },
         lua = { "stylua" },
         sh = { "shfmt" },
         terraform = { "tofu_fmt" },
