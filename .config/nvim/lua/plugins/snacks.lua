@@ -7,7 +7,7 @@ return {
     dashboard = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
-    picker = { enabled = true },
+    picker = { enabled = true, hidden = true },
     notifier = { enabled = true },
   },
   -- stylua: ignore
