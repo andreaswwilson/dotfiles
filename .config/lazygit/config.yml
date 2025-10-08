@@ -17,10 +17,9 @@ gui:
     cherryPickedCommitFgColor:
       - "#8aadf4" # Blue
     unstagedChangesColor:
-      - red       # Red
-
+      - red # Red
 customCommands:
   - key: "W"
     command: git commit --no-verify
     context: "global"
-    subprocess: true
+    output: terminal

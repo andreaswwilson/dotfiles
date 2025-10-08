@@ -28,9 +28,14 @@ antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
+# Export
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 export EDITOR=nvim
 export VISUAL=$EDITOR
+
+# Paths
+export PATH=$PATH:$(go env GOPATH)/bin
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Alias
 alias vim="nvim"

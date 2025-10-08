@@ -44,12 +44,12 @@ end
 config.color_scheme = "Tokyo Night"
 config.font_size = 11
 
-config.window_padding = {
-  left = 20,
-  right = 0,
-  top = 0,
-  bottom = 30,
-}
+-- config.window_padding = {
+--   left = 20,
+--   right = 0,
+--   top = 0,
+--   bottom = 30,
+-- }
 
 local longest_workspace_name_length = 0
 wezterm.on("update-status", function(window, _)
