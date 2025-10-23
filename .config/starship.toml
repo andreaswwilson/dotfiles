@@ -1,5 +1,0 @@
-[aws]
-disabled = true
-
-[terraform]
-disabled = true

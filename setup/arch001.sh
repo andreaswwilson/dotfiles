@@ -1,42 +1,35 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Get absolute path to dotfiles root
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DOTFILES_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-
-# Ask for sudo once and keep alive
-sudo -v
-while true; do
-  sudo -n true
-  sleep 60
-  kill -0 "$$" || exit
-done 2>/dev/null &
 
 # Install required packages
 sudo pacman -Syu --noconfirm --needed \
-  firefox git neovim stow go ghostty wl-clipboard \
-  waybar rofi-wayland github-cli zsh fzf \
-  zoxide atuin starship lsd luarocks lazygit
+  firefox git neovim stow go ghostty wl-clipboard hyprlock \
+  waybar rofi-wayland github-cli zsh fzf thunar \
+  zoxide atuin starship lsd luarocks lazygit dunst otf-font-awesome hyprpaper npm
 
-# Ensure ~/.config exists
-mkdir -p "$HOME/.config"
 
-# Stow only the .config folder
-stow -d "$DOTFILES_DIR" -t "$HOME/.config" .config
+DOTFILES_ROOT="${HOME}/dotfiles"
+DOT_PACKAGE_DIR="${DOTFILES_ROOT}/dot" # The directory containing your dotfiles
+if [ -d "$DOT_PACKAGE_DIR" ]; then
+    (
+        echo "Stowing dotfiles from ${DOT_PACKAGE_DIR} into $HOME..."
+        cd "$DOTFILES_ROOT"
+        stow -t "$HOME" dot
+    )
+else
+    echo "Error: Dotfiles package directory '${DOT_PACKAGE_DIR}' not found. Skipping stow." >&2
+fi
+# ----------------------------------------------------------------------
 
-# Symlink top-level dotfiles manually
-for file in "$DOTFILES_DIR"/.*; do
-  name="$(basename "$file")"
-  [[ "$name" == "." || "$name" == ".." || "$name" == ".config" ]] && continue
-  [[ -f "$file" ]] && ln -sf "$file" "$HOME/$name"
-done
 # Change shell only if not already zsh
 if [ "$SHELL" != "$(command -v zsh)" ]; then
+  echo "Changing default shell to zsh..."
   chsh -s "$(which zsh)"
 fi
 
 # Remove kitty if installed
 if pacman -Q kitty &>/dev/null; then
+  echo "Removing kitty..."
   sudo pacman -Rns --noconfirm kitty
 fi
