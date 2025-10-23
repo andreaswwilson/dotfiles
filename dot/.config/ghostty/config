@@ -1,0 +1,5 @@
+# Ghostty can reload the configuration while running by using the menu
+# Control + Shift + comma on other platforms). Not all config options can be
+font-family = "JetBrainsMono Nerd Font Mono"
+copy-on-select = "clipboard"
+

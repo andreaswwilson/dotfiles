@@ -1,24 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-
+rm -rf ~/.config
 # Install required packages
 sudo pacman -Syu --noconfirm --needed \
   firefox git neovim stow go ghostty wl-clipboard hyprlock \
-  waybar rofi-wayland github-cli zsh fzf thunar \
+  waybar rofi-wayland github-cli zsh fzf thunar pavucontrol ttf-jetbrains-mono-nerd \
   zoxide atuin starship lsd luarocks lazygit dunst otf-font-awesome hyprpaper npm
-
 
 DOTFILES_ROOT="${HOME}/dotfiles"
 DOT_PACKAGE_DIR="${DOTFILES_ROOT}/dot" # The directory containing your dotfiles
 if [ -d "$DOT_PACKAGE_DIR" ]; then
-    (
-        echo "Stowing dotfiles from ${DOT_PACKAGE_DIR} into $HOME..."
-        cd "$DOTFILES_ROOT"
-        stow -t "$HOME" dot
-    )
+  (
+    echo "Stowing dotfiles from ${DOT_PACKAGE_DIR} into $HOME..."
+    cd "$DOTFILES_ROOT"
+    stow -t "$HOME" dot
+  )
 else
-    echo "Error: Dotfiles package directory '${DOT_PACKAGE_DIR}' not found. Skipping stow." >&2
+  echo "Error: Dotfiles package directory '${DOT_PACKAGE_DIR}' not found. Skipping stow." >&2
 fi
 # ----------------------------------------------------------------------
 
