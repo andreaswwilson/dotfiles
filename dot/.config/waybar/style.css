@@ -1,4 +1,4 @@
-@import "mocha.css";
+@import "rose-pine.css";
 * {
   font-family: "JetBrainsMono Nerd Font Mono";
   font-size: 16px;
@@ -9,7 +9,7 @@
 }
 
 #waybar {
-  background: @mantle;
+  background: @base;
   color: @text;
   margin: 5px 5px;
 }
@@ -17,58 +17,54 @@
 #workspaces {
   border-radius: 1rem;
   margin: 5px;
-  background-color: @surface0;
+  background-color: @surface;
   margin-left: 1rem;
 }
 
 #workspaces button {
-  color: @lavender;
+  color: @text;
   border-radius: 1rem;
   padding: 0.4rem;
 }
 
 #workspaces button.active {
-  color: @sky;
+  color: @gold;
   border-radius: 1rem;
 }
 
 #workspaces button:hover {
-  color: @sapphire;
+  color: @highlightLow;
   border-radius: 1rem;
 }
 
 #clock,
 #battery,
 #pulseaudio {
-  background-color: @surface0;
+  background-color: @surface;
   padding: 0.5rem 1rem;
   margin: 5px 0;
 }
 
 #clock {
-  color: @blue;
+  color: @muted;
   border-radius: 1rem 1rem 1rem 1rem;
   margin-right: 1rem;
 }
 
 #battery {
-  color: @green;
+  color: @muted;
 }
 
 #battery.charging {
-  color: @green;
+  color: @muted;
 }
 
 #battery.warning:not(.charging) {
-  color: @red;
+  color: @love;
 }
 
 #battery.critical:not(.charging) {
-  color: @red;
-}
-
-#backlight {
-  color: @yellow;
+  color: @love;
 }
 
 #battery {
@@ -76,7 +72,7 @@
 }
 
 #pulseaudio {
-  color: @mauve;
+  color: @muted;
   border-radius: 1rem 1rem 1rem 1rem;
   margin-left: 0.5rem;
 }
