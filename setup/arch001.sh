@@ -1,14 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-rm -rf ~/.config
 # Install required packages
-sudo pacman -Syu --noconfirm --needed \
+sudo pacman -S --noconfirm --needed \
   firefox git neovim stow go ghostty wl-clipboard hyprlock pamixer \
   waybar rofi-wayland github-cli zsh fzf thunar pavucontrol ttf-jetbrains-mono-nerd \
   zoxide atuin starship lsd luarocks lazygit dunst otf-font-awesome npm brightnessctl \
-  blueman tmux bat
+  blueman bat base-devel
 
+# if ! command -v paru &>/dev/null; then
+#   tmpdir=$(mktemp -d)
+#   git clone https://aur.archlinux.org/paru.git "$tmpdir/paru"
+#   cd "$tmpdir/paru"
+#   makepkg -si --noconfirm
+#   cd /
+#   rm -rf "$tmpdir"
+# fi
+
+rm -rf ~/.config
 DOTFILES_ROOT="${HOME}/dotfiles"
 DOT_PACKAGE_DIR="${DOTFILES_ROOT}/dot" # The directory containing your dotfiles
 if [ -d "$DOT_PACKAGE_DIR" ]; then
@@ -33,3 +42,5 @@ if pacman -Q kitty &>/dev/null; then
   echo "Removing kitty..."
   sudo pacman -Rns --noconfirm kitty
 fi
+
+sudo pacman -Syu --noconfirm

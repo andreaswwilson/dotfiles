@@ -63,6 +63,10 @@
   color: @red;
 }
 
+#battery.critical:not(.charging) {
+  color: @red;
+}
+
 #backlight {
   color: @yellow;
 }
@@ -72,7 +76,7 @@
 }
 
 #pulseaudio {
-  color: @maroon;
+  color: @mauve;
   border-radius: 1rem 1rem 1rem 1rem;
   margin-left: 0.5rem;
 }
