@@ -9,7 +9,7 @@
 }
 
 #waybar {
-  background: transparent;
+  background: @mantle;
   color: @text;
   margin: 5px 5px;
 }
