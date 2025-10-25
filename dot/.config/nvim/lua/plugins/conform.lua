@@ -28,7 +28,9 @@ return {
       end,
       formatters_by_ft = {
         go = { "goimports", "gofumpt" },
-        json = { "fixjson" },
+        json = { "fixjson", "prettierd", stop_after_first = true },
+        jsonc = { "prettierd", "prettier", stop_after_first = true },
+        css = { "prettierd", "prettier", stop_after_first = true },
         json5 = { "prettierd", "prettier", stop_after_first = true },
         lua = { "stylua" },
         sh = { "shfmt" },

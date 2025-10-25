@@ -1,0 +1,55 @@
+{
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "active-only": true,
+    "all-outputs": true,
+    "format": "{}",
+    "format-icons": {
+      "urgent": "",
+      "active": "",
+      "default": "",
+    },
+    "persistent-workspaces": {
+      "*": 5,
+    },
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "format": {
+        "today": "<b><span color='#f38ba8'>{}</span></b>",
+      },
+    },
+  },
+  "battery": {
+    "interval": 2,
+    "states": {
+      "warning": 20,
+      "critical": 10,
+    },
+    "format": "{icon}  {capacity}%",
+    "format-full": "{icon}  {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-icons": ["", "", "", "", ""],
+  },
+  // Audio
+  "pulseaudio": {
+    "scroll-step": 1,
+    "format": "{icon} {volume: >3}%",
+    "format-bluetooth": "{icon} {volume: >3}%",
+    "format-muted": " muted",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "default": ["", ""],
+    },
+    "on-click": "pavucontrol",
+    "on-scroll-up": "pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob",
+    "on-scroll-down": "pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob",
+  },
+}
