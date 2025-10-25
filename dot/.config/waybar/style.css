@@ -9,8 +9,7 @@
 }
 
 #waybar {
-  background: @base;
-  color: @text;
+  background-color: @base;
   margin: 5px 5px;
 }
 
@@ -22,18 +21,13 @@
 }
 
 #workspaces button {
-  color: @text;
+  color: @muted;
   border-radius: 1rem;
   padding: 0.4rem;
 }
 
 #workspaces button.active {
-  color: @gold;
-  border-radius: 1rem;
-}
-
-#workspaces button:hover {
-  color: @highlightLow;
+  color: @text;
   border-radius: 1rem;
 }
 
