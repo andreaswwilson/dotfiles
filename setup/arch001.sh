@@ -7,7 +7,7 @@ sudo pacman -Syu --noconfirm --needed \
   firefox git neovim stow go ghostty wl-clipboard hyprlock pamixer \
   waybar rofi-wayland github-cli zsh fzf thunar pavucontrol ttf-jetbrains-mono-nerd \
   zoxide atuin starship lsd luarocks lazygit dunst otf-font-awesome npm brightnessctl \
-  blueman tmux
+  blueman tmux bat
 
 DOTFILES_ROOT="${HOME}/dotfiles"
 DOT_PACKAGE_DIR="${DOTFILES_ROOT}/dot" # The directory containing your dotfiles
