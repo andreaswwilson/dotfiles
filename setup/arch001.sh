@@ -17,18 +17,6 @@ sudo pacman -S --noconfirm --needed \
 #   rm -rf "$tmpdir"
 # fi
 
-rm -rf ~/.config
-DOTFILES_ROOT="${HOME}/dotfiles"
-DOT_PACKAGE_DIR="${DOTFILES_ROOT}/dot" # The directory containing your dotfiles
-if [ -d "$DOT_PACKAGE_DIR" ]; then
-  (
-    echo "Stowing dotfiles from ${DOT_PACKAGE_DIR} into $HOME..."
-    cd "$DOTFILES_ROOT"
-    stow -t "$HOME" dot
-  )
-else
-  echo "Error: Dotfiles package directory '${DOT_PACKAGE_DIR}' not found. Skipping stow." >&2
-fi
 # ----------------------------------------------------------------------
 
 # Change shell only if not already zsh

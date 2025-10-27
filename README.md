@@ -1,0 +1,1 @@
+Run "stow ." inside dotfiles
