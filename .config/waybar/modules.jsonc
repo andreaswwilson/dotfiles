@@ -1,16 +1,12 @@
 {
   "hyprland/workspaces": {
     "on-click": "activate",
-    "active-only": true,
     "all-outputs": true,
     "format": "{}",
     "format-icons": {
       "urgent": "",
       "active": "",
       "default": "",
-    },
-    "persistent-workspaces": {
-      "*": 5,
     },
   },
   "clock": {
