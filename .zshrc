@@ -50,3 +50,6 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(atuin init zsh)"
 eval "$(starship init zsh)" #curl -sS https://starship.rs/install.sh | sh
+
+
+eval "$(op completion zsh)"; compdef _op op

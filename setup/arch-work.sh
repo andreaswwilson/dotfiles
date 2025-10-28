@@ -44,8 +44,14 @@ for pkg in "${packages[@]}"; do
   fi
 done
 
+if ! pacman -Q twingate &>/dev/null; then
+  curl https://binaries.twingate.com/client/linux/ARCH/x86_64/stable/twingate-amd64.pkg.tar.zst --output twingate.pkg.tar.zst
+  pacman -U --noconfirm twingate.pkg.tar.zst
+  rm twingate.pgk.tar.zst
+  sudo twingate setup
+fi
+
 sudo pacman -S docker --noconfirm --needed
-echo "Checking Docker group membership for $USER..."
 if ! groups "$USER" | grep -q '\bdocker\b'; then
   sudo usermod -aG docker "$USER"
 fi
