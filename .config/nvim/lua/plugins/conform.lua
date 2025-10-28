@@ -2,10 +2,6 @@ return {
   { -- Autoformat
     "stevearc/conform.nvim",
 
-    dependencies = {
-      {},
-    },
-
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     opts = {
