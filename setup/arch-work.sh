@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
-sudo pacman -Syu --noconfirm
+
+NAME="Andreas Wågø Wilson"
+EMAIL="andreas.wilson@visma.com"
+
 # Check if paru is already installed
 if ! command -v paru &>/dev/null; then
   echo "Paru not found. Proceeding with installation."
@@ -25,16 +28,61 @@ if ! command -v paru &>/dev/null; then
   echo "Paru installation complete."
 fi
 
-if ! command -v google-chrome-stable &>/dev/null; then
-  paru -S --noconfirm --skipreview google-chrome
-fi
-if ! command -v 1password &>/dev/null; then
-  paru -S --noconfirm --skipreview 1password
-fi
+paru -Syu --noconfirm
 
-if ! command -v slack-desktop &>/dev/null; then
-  paru -S --noconfirm --skipreview slack-desktop
-fi
+# Packages to install with paru
+packages=(
+  google-chrome
+  1password
+  slack-desktop
+  tflint-bin
+)
 
-git config --global user.email "andreas.wilson@vimsa.com"
-git config --global user.name "Andreas Wågø Wilson"
+for pkg in "${packages[@]}"; do
+  if ! pacman -Q "$pkg" &>/dev/null; then
+    paru -S --noconfirm --skipreview "$pkg"
+  fi
+done
+
+sudo pacman -S docker --noconfirm --needed
+echo "Checking Docker group membership for $USER..."
+if ! groups "$USER" | grep -q '\bdocker\b'; then
+  sudo usermod -aG docker "$USER"
+fi
+if ! systemctl is-enabled --quiet docker.socket; then
+  sudo systemctl enable docker.socket
+fi
+git config --global user.email "$EMAIL"
+git config --global user.name "$NAME"
+
+# --- Configuration for GPG---
+# runs ONLY if the key DOES NOT exist.
+if ! gpg --list-keys "${EMAIL}" &>/dev/null; then
+
+  echo "Key for '${EMAIL}' not found. Generating new key..."
+
+  # 2. Create the Key
+  gpg --batch --gen-key <<EOF
+%echo Generating a new GPG key
+Key-Type: RSA
+Key-Length: 4096
+Subkey-Type: RSA
+Subkey-Length: 4096
+Name-Real: ${NAME}
+Name-Email: ${EMAIL}
+Expire-Date: 0
+%no-protection
+%commit
+%echo Done
+EOF
+fi
+if ! command -v pass &>/dev/null; then
+  echo "'pass' (password-store) is not installed. Please install it first."
+  exit 1
+fi
+#!/bin/bash
+
+# Check if the directory exists
+if [[ ! -d "$HOME/.password-store" ]]; then
+  pass init $EMAIL
+fi
