@@ -33,10 +33,19 @@
 
 #clock,
 #battery,
-#pulseaudio {
+#pulseaudio,
+#custom-power,
+#custom-bluetooth {
   background-color: @surface;
   padding: 0.5rem 1rem;
   margin: 5px 0;
+}
+#clock:hover,
+#battery:hover,
+#pulseaudio:hover,
+#custom-power:hover,
+#custom-bluetooth:hover {
+  color: @text;
 }
 
 #clock {
@@ -61,11 +70,10 @@
   color: @love;
 }
 
-#battery {
-  border-radius: 1rem 1rem 1rem 1rem;
-}
-
-#pulseaudio {
+#pulseaudio,
+#battery,
+#custom-power,
+#custom-bluetooth {
   color: @subtle;
   border-radius: 1rem 1rem 1rem 1rem;
   margin-left: 0.5rem;

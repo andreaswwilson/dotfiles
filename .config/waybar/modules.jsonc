@@ -48,4 +48,18 @@
     "on-scroll-up": "pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob",
     "on-scroll-down": "pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob",
   },
+  "custom/power": {
+    "format": "󰐥",
+    "exec": "~/.config/waybar/powermenu.sh --status",
+    "on-click": "~/.config/waybar/powermenu.sh",
+    "interval": "once",
+    "tooltip-format": "Power Menu",
+  },
+  "custom/bluetooth": {
+    "format": "󰂯",
+    "exec": "~/.config/waybar/rofi-bluetooth.sh --status",
+    "on-click": "~/.config/waybar/rofi-bluetooth.sh",
+    "interval": 5,
+    "tooltip-format": "Open Bluetooth Menu",
+  },
 }
