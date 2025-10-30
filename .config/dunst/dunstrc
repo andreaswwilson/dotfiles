@@ -1,0 +1,62 @@
+[global]
+    font = JetBrainsMono Nerd Font Mono 12
+
+    icon_position = left
+    max_icon_size = 32
+    markup = yes
+    # --- Layout ---
+    alignment = left
+    word_wrap = yes
+    width = 350
+    height = (100, 1000)
+    offset = (10, 50) # 10px from right, 50px from top
+    origin = top-right
+    padding = 10
+    horizontal_padding = 10
+    frame_width = 2
+
+    # --- Misc ---
+    show_age_threshold = 60
+    ignore_newline = no
+    separator_color = "#26233a" # Overlay
+
+#-------------------------------------------------
+# Urgency sections with Rosé Pine (Main) theme
+#
+# Base:    #191724
+# Surface: #1f1d2e
+# Overlay: #26233a
+# Muted:   #6e6a86
+# Subtle:  #908caa
+# Text:    #e0def4
+# Love:    #eb6f92 (Red)
+# Gold:    #f6c177 (Yellow)
+# Rose:    #ebbcba (Pink)
+# Pine:    #31748f (Green)
+# Foam:    #9ccfd8 (Teal)
+# Iris:    #c4a7e7 (Purple)
+#-------------------------------------------------
+
+[urgency_low]
+    # Muted text on a dark background
+    background = "#1f1d2e"
+    foreground = "#6e6a86"
+    frame_color = "#31748f"
+    default_icon = "dialog-information"
+    timeout = 5
+
+[urgency_normal]
+    # Standard text on a dark background
+    background = "#1f1d2e"
+    foreground = "#e0def4"
+    frame_color = "#c4a7e7"
+    timeout = 10
+
+[urgency_critical]
+    # "Love" (red) text on a dark background
+    background = "#1f1d2e"
+    foreground = "#eb6f92"
+    frame_color = "#eb6f92"
+    timeout = 0 # Stays until dismissed
+
+
