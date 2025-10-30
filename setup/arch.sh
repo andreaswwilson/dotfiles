@@ -7,7 +7,7 @@ sudo pacman -S --noconfirm --needed \
   waybar rofi-wayland github-cli zsh fzf thunar pavucontrol ttf-jetbrains-mono-nerd \
   zoxide atuin starship lsd luarocks lazygit dunst otf-font-awesome npm brightnessctl \
   blueman bat base-devel opentofu tmux jq pre-commit spotify-launcher hyprpaper hypridle \
-  less
+  less shellcheck actionlint obsidian
 
 # ----------------------------------------------------------------------
 
