@@ -57,9 +57,7 @@
   },
   "custom/bluetooth": {
     "format": "󰂯",
-    "exec": "~/.config/waybar/rofi-bluetooth.sh --status",
-    "on-click": "~/.config/waybar/rofi-bluetooth.sh",
-    "interval": 5,
+    "on-click": "blueman-manager",
     "tooltip-format": "Open Bluetooth Menu",
   },
 }
