@@ -51,5 +51,8 @@ eval "$(zoxide init --cmd cd zsh)"
 eval "$(atuin init zsh)"
 eval "$(starship init zsh)" #curl -sS https://starship.rs/install.sh | sh
 
+if [[ "$USER" == "andreaswilson" ]]; then
+  eval "$(op completion zsh)"
+  compdef _op op
+fi
 
-eval "$(op completion zsh)"; compdef _op op
