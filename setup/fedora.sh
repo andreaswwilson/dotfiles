@@ -1,26 +1,33 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-# sudo dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-# sudo dnf install -y fedora-workstation-repositories
-# sudo dnf config-manager setopt google-chrome.enabled=1
+sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install -y fedora-workstation-repositories
+sudo dnf config-manager setopt google-chrome.enabled=1
 
 sudo rpm --import https://downloads.1password.com/linux/keys/1password.asc
 sudo sh -c 'echo -e "[1password]\nname=1Password Stable Channel\nbaseurl=https://downloads.1password.com/linux/rpm/stable/\$basearch\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=\"https://downloads.1password.com/linux/keys/1password.asc\"" > /etc/yum.repos.d/1password.repo'
+
 sudo dnf copr enable atim/starship -y
 sudo dnf copr enable scottames/ghostty -y
 sudo dnf copr enable dejan/lazygit -y
 
 sudo dnf install -y git gh neovim google-chrome-stable stow 1password 1password-cli zsh go lsd fd ripgrep \
-  fzf atuin zoxide starship pass ghostty bat lazygit
+  fzf atuin zoxide starship pass ghostty bat lazygit docker
+command -v twingate >/dev/null 2>&1 || curl -s https://binaries.twingate.com/client/linux/install.sh | sudo bash && sudo twingate setup
 
 # Change shell only if not already zsh
 if [ "$SHELL" != "$(command -v zsh)" ]; then
   echo "Changing default shell to zsh..."
   chsh -s "$(which zsh)"
 fi
-# sudo dnf upgrade --refresh
+if ! groups "$USER" | grep -q '\bdocker\b'; then
+  sudo usermod -aG docker "$USER"
+fi
+if ! systemctl is-enabled --quiet docker.socket; then
+  sudo systemctl enable docker.socket
+fi
 
 EMAIL="andreas.wilson@visma.com"
 NAME="Andreas Wågø Wilson"
@@ -121,4 +128,6 @@ if [ ! -f "$CHECK_FILE" ]; then
   echo "Reloading Sway config..."
   swaymsg reload
 fi
-[ ! -d "~/.tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+[ ! -d "$HOME/.tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+
+sudo dnf upgrade --refresh -y
