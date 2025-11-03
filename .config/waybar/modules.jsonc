@@ -1,14 +1,14 @@
 {
-  "hyprland/workspaces": {
-    "on-click": "activate",
-    "all-outputs": true,
-    "format": "{}",
-    "format-icons": {
-      "urgent": "",
-      "active": "",
-      "default": "",
-    },
-  },
+  // "sway/workspaces": {
+  //   "on-click": "activate",
+  //   "all-outputs": true,
+  //   "format": "{id}",
+  //   "format-icons": {
+  //     "urgent": "!",
+  //     "active": "",
+  //     "default": "",
+  //   },
+  // },
   "clock": {
     "format": "{:%H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",

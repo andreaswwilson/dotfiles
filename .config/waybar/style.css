@@ -1,6 +1,6 @@
 @import "rose-pine.css";
 * {
-  font-family: "JetBrainsMono Nerd Font Mono";
+  font-family: "JetBrainsMono Nerd Font Mono", "JetBrainsMono Nerd Font";
   font-size: 16px;
   min-height: 0;
   padding-right: 0px;
@@ -26,7 +26,8 @@
   padding: 0.4rem;
 }
 
-#workspaces button.active {
+#workspaces button.focused,
+button.active {
   color: @text;
   border-radius: 1rem;
 }

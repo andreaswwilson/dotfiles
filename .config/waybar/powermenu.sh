@@ -31,13 +31,12 @@ case "$chosen" in
   ;;
 "$lock")
   # Use 'hyprlock' or 'swaylock' or any other locker
-  hyprlock
+  swaylock
   ;;
 "$suspend")
   systemctl suspend
   ;;
 "$logout")
-  # For Hyprland
-  hyprctl dispatch exit
+  swaymsg exit
   ;;
 esac

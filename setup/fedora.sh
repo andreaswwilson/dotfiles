@@ -83,3 +83,42 @@ fi
 if [[ ! -d "$HOME/.password-store" ]]; then
   pass init $EMAIL
 fi
+
+# Nerd font
+FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip"
+FONT_DIR="$HOME/.local/share/fonts"
+CHECK_FILE="$FONT_DIR/JetBrainsMonoNerdFont-Regular.ttf"
+TMP_FILE="/tmp/JetBrainsMono.zip"
+for cmd in wget unzip fc-cache fc-list swaymsg rg; do
+  if ! command -v "$cmd" &>/dev/null; then
+    echo "Error: Required command '$cmd' is not installed." >&2
+    echo "Please install it and try again." >&2
+    exit 1
+  fi
+done
+
+if [ ! -f "$CHECK_FILE" ]; then
+  echo "Font file '$CHECK_FILE' not found. Proceeding with installation..."
+
+  echo "Downloading font from $FONT_URL..."
+  wget -q --show-progress -O "$TMP_FILE" "$FONT_URL"
+
+  echo "Ensuring font directory exists: $FONT_DIR"
+  mkdir -p "$FONT_DIR"
+
+  echo "Installing font..."
+  unzip -q -o "$TMP_FILE" -d "$FONT_DIR"
+
+  echo "Cleaning up temporary file..."
+  rm "$TMP_FILE"
+
+  echo "Updating font cache (this may take a moment)..."
+  fc-cache -fv >/dev/null
+
+  echo "------------------------------------------------"
+  echo "✅ JetBrainsMono Nerd Font installed successfully!"
+
+  echo "Reloading Sway config..."
+  swaymsg reload
+fi
+[ ! -d "~/.tmux/plugins/tpm" ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
