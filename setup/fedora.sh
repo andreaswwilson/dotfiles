@@ -9,13 +9,25 @@ sudo dnf config-manager setopt google-chrome.enabled=1
 sudo rpm --import https://downloads.1password.com/linux/keys/1password.asc
 sudo sh -c 'echo -e "[1password]\nname=1Password Stable Channel\nbaseurl=https://downloads.1password.com/linux/rpm/stable/\$basearch\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=\"https://downloads.1password.com/linux/keys/1password.asc\"" > /etc/yum.repos.d/1password.repo'
 
+# kubectl
+# Note:
+# To upgrade kubectl to another minor release, you'll need to bump the version in /etc/yum.repos.d/kubernetes.repo before running yum update
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.34/rpm/
+enabled=1
+gpgcheck=1
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.34/rpm/repodata/repomd.xml.key
+EOF
+
 sudo dnf copr enable atim/starship -y
 sudo dnf copr enable scottames/ghostty -y
 sudo dnf copr enable dejan/lazygit -y
 
 sudo dnf install -y git gh neovim google-chrome-stable stow 1password 1password-cli zsh go lsd fd ripgrep \
-  fzf atuin zoxide starship pass ghostty bat lazygit docker
-command -v twingate >/dev/null 2>&1 || curl -s https://binaries.twingate.com/client/linux/install.sh | sudo bash && sudo twingate setup
+  fzf atuin zoxide starship pass ghostty bat lazygit docker ansible nss-tools kubectl helm tofu
+command -v twingate >/dev/null 2>&1 || (curl -s https://binaries.twingate.com/client/linux/install.sh | sudo bash && sudo twingate setup)
 
 # Change shell only if not already zsh
 if [ "$SHELL" != "$(command -v zsh)" ]; then
@@ -89,6 +101,23 @@ fi
 # Check if the directory exists
 if [[ ! -d "$HOME/.password-store" ]]; then
   pass init $EMAIL
+fi
+
+# mkcert
+if [ ! -f "/usr/local/bin/mkcert" ]; then
+  curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64"
+  chmod +x mkcert-v*-linux-amd64
+  sudo cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert
+  rm mkcert-v*-linux-amd64
+  mkcert -install
+fi
+
+if [ ! -f "/usr/local/bin/k3d" ]; then
+  curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+fi
+
+if [ ! -f "/user/local/bin" ]; then
+  curl -L -o devspace "https://github.com/loft-sh/devspace/releases/latest/download/devspace-linux-amd64" && sudo install -c -m 0755 devspace /usr/local/bin
 fi
 
 # Nerd font
