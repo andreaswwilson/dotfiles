@@ -4,30 +4,6 @@ set -euo pipefail
 NAME="Andreas Wågø Wilson"
 EMAIL="andreas.wilson@visma.com"
 
-# Check if paru is already installed
-if ! command -v paru &>/dev/null; then
-  echo "Paru not found. Proceeding with installation."
-  # Create a temporary directory for building paru
-  BUILD_DIR=$(mktemp -d)
-  echo "Using temporary directory: $BUILD_DIR"
-  cd "$BUILD_DIR" || exit 1
-
-  # Clone paru repository
-  echo "Cloning paru repository..."
-  git clone https://aur.archlinux.org/paru.git
-
-  # Build and install paru
-  echo "Building and installing paru..."
-  cd paru || exit 1
-  makepkg -si --noconfirm
-
-  # Cleanup: Remove the temporary directory
-  echo "Cleaning up temporary build files..."
-  rm -rf "$BUILD_DIR"
-
-  echo "Paru installation complete."
-fi
-
 paru -Syu --noconfirm
 
 # Packages to install with paru
@@ -49,14 +25,6 @@ if ! pacman -Q twingate &>/dev/null; then
   pacman -U --noconfirm twingate.pkg.tar.zst
   rm twingate.pgk.tar.zst
   sudo twingate setup
-fi
-
-sudo pacman -S docker --noconfirm --needed
-if ! groups "$USER" | grep -q '\bdocker\b'; then
-  sudo usermod -aG docker "$USER"
-fi
-if ! systemctl is-enabled --quiet docker.socket; then
-  sudo systemctl enable docker.socket
 fi
 
 # --- Configuration for GPG---

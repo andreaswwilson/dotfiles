@@ -7,8 +7,14 @@ sudo pacman -S --noconfirm --needed \
   waybar rofi-wayland github-cli zsh fzf thunar pavucontrol ttf-jetbrains-mono-nerd \
   zoxide atuin starship lsd luarocks lazygit dunst otf-font-awesome npm brightnessctl \
   blueman bat base-devel opentofu tmux jq pre-commit spotify-launcher hyprpaper hypridle \
-  less shellcheck actionlint obsidian
+  less shellcheck actionlint obsidian docker
 
+if ! groups "$USER" | grep -q '\bdocker\b'; then
+  sudo usermod -aG docker "$USER"
+fi
+if ! systemctl is-enabled --quiet docker.socket; then
+  sudo systemctl enable docker.socket
+fi
 # ----------------------------------------------------------------------
 
 # Change shell only if not already zsh
@@ -23,3 +29,27 @@ if pacman -Q kitty &>/dev/null; then
   sudo pacman -Rns --noconfirm kitty
 fi
 git config --global push.autoSetupRemote true
+
+# Check if paru is already installed
+if ! command -v paru &>/dev/null; then
+  echo "Paru not found. Proceeding with installation."
+  # Create a temporary directory for building paru
+  BUILD_DIR=$(mktemp -d)
+  echo "Using temporary directory: $BUILD_DIR"
+  cd "$BUILD_DIR" || exit 1
+
+  # Clone paru repository
+  echo "Cloning paru repository..."
+  git clone https://aur.archlinux.org/paru.git
+
+  # Build and install paru
+  echo "Building and installing paru..."
+  cd paru || exit 1
+  makepkg -si --noconfirm
+
+  # Cleanup: Remove the temporary directory
+  echo "Cleaning up temporary build files..."
+  rm -rf "$BUILD_DIR"
+
+  echo "Paru installation complete."
+fi
