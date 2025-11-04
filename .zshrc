@@ -56,4 +56,4 @@ if [[ "$USER" == "andreaswilson" ]]; then
   compdef _op op
 fi
 
-source ~/.zsh/completion/_k3s
+source ~/.zsh/completions/_k3d
