@@ -26,8 +26,10 @@ sudo dnf copr enable scottames/ghostty -y
 sudo dnf copr enable dejan/lazygit -y
 
 sudo dnf install -y git gh neovim google-chrome-stable stow 1password 1password-cli zsh go lsd fd ripgrep \
-  fzf atuin zoxide starship pass ghostty bat lazygit docker ansible nss-tools kubectl helm tofu
+  fzf atuin zoxide starship pass ghostty bat lazygit docker ansible nss-tools kubectl helm tofu pre-commit cargo
 command -v twingate >/dev/null 2>&1 || (curl -s https://binaries.twingate.com/client/linux/install.sh | sudo bash && sudo twingate setup)
+command -v sd >/dev/null 2>&1 || cargo install sd
+command -v tflint >/dev/null 2>&1 || (curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash)
 
 # Change shell only if not already zsh
 if [ "$SHELL" != "$(command -v zsh)" ]; then
@@ -111,14 +113,8 @@ if [ ! -f "/usr/local/bin/mkcert" ]; then
   rm mkcert-v*-linux-amd64
   mkcert -install
 fi
-
-if [ ! -f "/usr/local/bin/k3d" ]; then
-  curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
-fi
-
-if [ ! -f "/user/local/bin" ]; then
-  curl -L -o devspace "https://github.com/loft-sh/devspace/releases/latest/download/devspace-linux-amd64" && sudo install -c -m 0755 devspace /usr/local/bin
-fi
+command -v k3d >/dev/null 2>&1 || (curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash)
+command -v devspace >/dev/null 2>&1 || (curl -L -o devspace "https://github.com/loft-sh/devspace/releases/latest/download/devspace-linux-amd64" && sudo install -c -m 0755 devspace /usr/local/bin)
 
 # Nerd font
 FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip"
