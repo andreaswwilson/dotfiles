@@ -6,7 +6,7 @@
   "position": "top",
   "height": 40,
 
-  "modules-left": ["sway/workspaces"],
+  "modules-left": ["sway/workspaces", "hyprland/workspaces"],
 
   "modules-center": ["clock"],
 
