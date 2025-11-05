@@ -18,7 +18,7 @@ logout="Log Out"
 rofi_command="rofi -dmenu -i -p Power"
 
 # 3. Show the menu and get the chosen option
-options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
+options="$lock\n$reboot\n$suspend\n$shutdown\n$logout"
 chosen=$(echo -e "$options" | $rofi_command)
 
 # 4. Handle the user's choice
