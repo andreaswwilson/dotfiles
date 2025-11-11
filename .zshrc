@@ -26,6 +26,7 @@ antigen bundle jeffreytse/zsh-vi-mode
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle ohmyzsh/ohmyzsh plugins/git
 antigen apply
 
 # Export
@@ -57,3 +58,4 @@ if [[ "$USER" == "andreaswilson" ]]; then
 fi
 
 source ~/.zsh/completions/_k3d
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
