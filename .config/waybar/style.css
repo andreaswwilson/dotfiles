@@ -27,7 +27,7 @@
 }
 
 #workspaces button.focused,
-button.active {
+#workspaces button.active {
   color: @text;
   border-radius: 1rem;
 }
