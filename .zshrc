@@ -27,6 +27,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle ohmyzsh/ohmyzsh plugins/git
+antigen bundle ohmyzsh/ohmyzsh plugins/aws
 antigen apply
 
 # Export
@@ -50,8 +51,10 @@ alias cat="bat --style=grid,header"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(atuin init zsh)"
-eval "$(starship init zsh)" #curl -sS https://starship.rs/install.sh | sh
-
+type starship_zle-keymap-select >/dev/null || \
+  {
+    eval "$(/usr/bin/starship init zsh)"
+  }
 if [[ "$USER" == "andreaswilson" ]]; then
   eval "$(op completion zsh)"
   compdef _op op
