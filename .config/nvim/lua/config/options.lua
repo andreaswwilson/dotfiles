@@ -31,3 +31,5 @@ vim.filetype.add({
   },
 })
 vim.treesitter.language.register("yaml", "ghaction")
+
+vim.lsp.set_log_level("off")
