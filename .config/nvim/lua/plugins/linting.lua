@@ -15,8 +15,8 @@ return {
         json = { "jsonlint" },
         markdown = { "markdownlint" },
         sh = { "shellcheck" },
-        terraform = { "tflint" },
-        tf = { "tflint" },
+        -- terraform = { "tflint" },
+        -- tf = { "tflint" },
       }
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
       -- instead set linters_by_ft like this:
