@@ -39,6 +39,7 @@ export VISUAL=$EDITOR
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=~/.npm-global/bin:$PATH
+export PATH="$PATH:$HOME/.local/bin"
 
 # Alias
 alias vim="nvim"

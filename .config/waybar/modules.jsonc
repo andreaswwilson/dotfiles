@@ -10,7 +10,8 @@
   //   },
   // },
   "clock": {
-    "format": "{:%H:%M}",
+    // "format": "{:%H:%M}",
+    "format": "{:%a %d %b - %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "month",
