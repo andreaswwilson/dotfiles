@@ -23,6 +23,7 @@ return {
         }
       end,
       formatters_by_ft = {
+        cs = { "csharpier" },
         go = { "goimports", "gofumpt" },
         json = { "fixjson", "prettierd", stop_after_first = true },
         jsonc = { "prettierd", "prettier", stop_after_first = true },

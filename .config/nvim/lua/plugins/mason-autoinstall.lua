@@ -4,6 +4,7 @@ return {
   event = "VeryLazy", -- Delay loading slightly
   opts = function(_, opts)
     local formatters = {
+      "csharpier",
       "gofumpt",
       "goimports",
       "prettier",
@@ -16,6 +17,7 @@ return {
       "gopls",
       "lua_ls",
       "pyright",
+      "roslyn",
       "tofu_ls",
     }
 

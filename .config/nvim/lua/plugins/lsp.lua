@@ -17,7 +17,12 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false,
     dependencies = {
-      { "mason-org/mason.nvim", opts = {} },
+      { "mason-org/mason.nvim", opts = {
+        registries = {
+          "github:mason-org/mason-registry",
+          "github:Crashdummyy/mason-registry",
+        },
+      } },
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
 
@@ -215,6 +220,14 @@ return {
 
       -- Shows a signature help window while you type arguments for a function
       signature = { enabled = true },
+    },
+  },
+  {
+    "seblyng/roslyn.nvim",
+    ft = "cs", -- Add this to ensure it loads for C# files
+    opts = {
+      filewatching = "auto",
+      silent = false, -- Set to false to see any error messages
     },
   },
 }
