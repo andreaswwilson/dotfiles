@@ -5,4 +5,4 @@ font-family = "JetBrainsMono Nerd Font Mono"
 copy-on-select = "clipboard"
 mouse-hide-while-typing = true
 scrollback-limit = 1000000
-theme = Rose Pine
+theme = rose-pine
