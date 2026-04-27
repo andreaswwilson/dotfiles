@@ -26,5 +26,12 @@ map("n", "<A-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 -- qlist
 map("n", "<leader>cn", ":cnext<CR>", { desc = "Next quicklist item", silent = true })
 map("n", "<leader>cp", ":cprevious<CR>", { desc = "Previous quicklist item", silent = true })
--- lsp
-map("n", "gR", vim.lsp.buf.rename, { desc = "LSP Rename" })
+-- delete 0.12 default gr* bindings that collide with Snacks; keep grn (rename)
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    pcall(vim.keymap.del, "n", "grr")
+    pcall(vim.keymap.del, "n", "gra")
+    pcall(vim.keymap.del, "n", "gri")
+    pcall(vim.keymap.del, "n", "grt")
+  end,
+})

@@ -26,10 +26,15 @@ opt.foldenable = true
 
 -- Filetype detection
 vim.filetype.add({
+  extension = {
+    gotmpl = "gotmpl",
+    tofu = "opentofu",
+  },
   pattern = {
     [".*github/workflows/.*"] = "ghaction",
+    [".+%.tofu%.tfvars"] = "opentofu-vars",
   },
 })
 vim.treesitter.language.register("yaml", "ghaction")
 
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level("OFF")
