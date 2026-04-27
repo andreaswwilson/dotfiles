@@ -26,6 +26,12 @@ map("n", "<A-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 -- qlist
 map("n", "<leader>cn", ":cnext<CR>", { desc = "Next quicklist item", silent = true })
 map("n", "<leader>cp", ":cprevious<CR>", { desc = "Previous quicklist item", silent = true })
+-- undotree (built-in nvim.undotree pack, opt-in via packadd)
+vim.keymap.set("n", "<leader>u", function()
+  vim.cmd.packadd("nvim.undotree")
+  vim.cmd.Undotree()
+end, { desc = "Undo tree" })
+
 -- delete 0.12 default gr* bindings that collide with Snacks; keep grn (rename)
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
