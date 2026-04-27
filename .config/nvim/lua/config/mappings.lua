@@ -33,5 +33,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
     pcall(vim.keymap.del, "n", "gra")
     pcall(vim.keymap.del, "n", "gri")
     pcall(vim.keymap.del, "n", "grt")
+    pcall(vim.keymap.del, "n", "grx")
   end,
 })

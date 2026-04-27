@@ -32,6 +32,7 @@ require("lazy").setup({
     -- import your plugins
     { import = "plugins" },
   },
+  rocks = { hererocks = false },
   performance = {
     rtp = {
       disabled_plugins = {
