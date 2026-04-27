@@ -13,7 +13,6 @@ return {
         ghaction = { "actionlint" },
         go = { "golangcilint" },
         json = { "jsonlint" },
-        markdown = { "markdownlint" },
         sh = { "shellcheck" },
         -- terraform = { "tflint" },
         -- tf = { "tflint" },
