@@ -51,7 +51,7 @@ alias cat="bat --style=grid,header"
 
 #Eval
 eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
+eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
 eval "$(direnv hook zsh)"
 type starship_zle-keymap-select >/dev/null || \
