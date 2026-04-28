@@ -33,6 +33,7 @@ return {
         sh = { "shfmt" },
         terraform = { "tofu_fmt" },
         tf = { "tofu_fmt" },
+        yaml = { "yamlfmt" },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --

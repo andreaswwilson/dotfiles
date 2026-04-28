@@ -12,6 +12,7 @@ return {
       "stylua",
       "shfmt",
       "fixjson",
+      "yamlfmt",
     }
     local lsps = {
       "gopls",
