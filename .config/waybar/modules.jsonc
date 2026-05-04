@@ -9,6 +9,17 @@
   //     "default": "",
   //   },
   // },
+  "network": {
+    "interval": 5,
+    "format-wifi": "󰖩",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰖪",
+    "format-disabled": "󰖪",
+    "tooltip-format-wifi": "{essid}\n{ipaddr}/{cidr}\n{frequency} MHz · {signaldBm} dBm",
+    "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "nm-connection-editor",
+  },
   "clock": {
     // "format": "{:%H:%M}",
     "format": "{:%a %d %b - %H:%M}",
