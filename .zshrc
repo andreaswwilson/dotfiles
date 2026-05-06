@@ -40,6 +40,7 @@ export PATH=$PATH:$(go env GOPATH)/bin
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=~/.npm-global/bin:$PATH
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # Alias
 alias vim="nvim"
@@ -48,6 +49,7 @@ alias ls="lsd"
 alias l="ls -la"
 alias lt="ls --tree"
 alias cat="bat --style=grid,header"
+alias k="kubectl"
 
 #Eval
 eval "$(fzf --zsh)"
@@ -65,3 +67,6 @@ fi
 
 source ~/.zsh/completions/_k3d
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+
+# opencode
+export PATH=/home/andreas.wilson/.opencode/bin:$PATH
