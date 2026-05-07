@@ -57,3 +57,6 @@ history = 100000
 
 [mouse]
 hide_when_typing = true
+
+[selection]
+save_to_clipboard = true
