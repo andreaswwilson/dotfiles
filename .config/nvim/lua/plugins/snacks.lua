@@ -5,7 +5,11 @@ return {
   ---@type snacks.Config
   opts = {
     dashboard = { enabled = true },
-    indent = { enabled = true },
+    indent = {
+      enabled = true,
+      -- nvim 0.12: injection parse hits nil node in vim.treesitter.get_range
+      scope = { treesitter = { injections = false } },
+    },
     input = { enabled = true },
     picker = { enabled = true, hidden = true },
     notifier = { enabled = true },
