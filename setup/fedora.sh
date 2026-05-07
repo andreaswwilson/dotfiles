@@ -6,6 +6,10 @@ sudo dnf install -y https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfr
 sudo dnf install -y fedora-workstation-repositories
 sudo dnf config-manager setopt google-chrome.enabled=1
 
+if [ ! -f /etc/yum.repos.d/docker-ce.repo ]; then
+  sudo dnf config-manager addrepo --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo
+fi
+
 sudo rpm --import https://downloads.1password.com/linux/keys/1password.asc
 sudo sh -c 'echo -e "[1password]\nname=1Password Stable Channel\nbaseurl=https://downloads.1password.com/linux/rpm/stable/\$basearch\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=\"https://downloads.1password.com/linux/keys/1password.asc\"" > /etc/yum.repos.d/1password.repo'
 
@@ -22,11 +26,15 @@ gpgkey=https://pkgs.k8s.io/core:/stable:/v1.34/rpm/repodata/repomd.xml.key
 EOF
 
 sudo dnf copr enable atim/starship -y
-sudo dnf copr enable scottames/ghostty -y
 sudo dnf copr enable dejan/lazygit -y
 
 sudo dnf install -y git gh neovim google-chrome-stable stow 1password 1password-cli zsh go lsd fd ripgrep \
-  fzf atuin zoxide starship pass ghostty bat lazygit docker ansible nss-tools kubectl helm tofu pre-commit cargo
+  fzf atuin zoxide starship pass alacritty bat lazygit \
+  docker-ce docker-ce-cli docker-ce-rootless-extras containerd.io docker-buildx-plugin docker-compose-plugin \
+  ansible nss-tools kubectl helm tofu pre-commit cargo wtype
+if rpm -q moby-engine-nano moby-filesystem >/dev/null 2>&1; then
+  sudo dnf remove -y moby-engine-nano moby-filesystem
+fi
 command -v twingate >/dev/null 2>&1 || (curl -s https://binaries.twingate.com/client/linux/install.sh | sudo bash && sudo twingate setup)
 command -v sd >/dev/null 2>&1 || cargo install sd
 command -v tflint >/dev/null 2>&1 || (curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash)
