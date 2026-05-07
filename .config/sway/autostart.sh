@@ -13,12 +13,29 @@ wait_chrome_count() {
   done
 }
 
+count_1password() {
+  swaymsg -t get_tree | grep -c '"app_id": "1password"'
+}
+
+wait_1password_window() {
+  for _ in $(seq 1 40); do
+    [ "$(count_1password)" -ge 1 ] && return 0
+    sleep 0.25
+  done
+  return 1
+}
+
 # 1. Apps placed by assign rules in workspaces.conf.
 alacritty &
 evolution &
-1password &
 slack &
 spotify &
+1password &
+if wait_1password_window; then
+  swaymsg '[app_id="1password"] focus' >/dev/null
+  pass show 1password | head -1 | wtype -s 50 -
+  wtype -k Return
+fi
 
 # 2. Default profile → WS1; poll until window maps.
 swaymsg 'workspace number 1; exec google-chrome --restore-last-session --profile-directory="Default"' >/dev/null
