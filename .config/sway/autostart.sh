@@ -31,11 +31,12 @@ evolution &
 slack &
 spotify &
 1password &
-if wait_1password_window; then
+(
+  wait_1password_window || exit 0
   swaymsg '[app_id="1password"] focus' >/dev/null
   pass show 1password | head -1 | wtype -s 50 -
   wtype -k Return
-fi
+) &
 
 # 2. Default profile → WS1; poll until window maps.
 swaymsg 'workspace number 1; exec google-chrome --restore-last-session --profile-directory="Default"' >/dev/null
