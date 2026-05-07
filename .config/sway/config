@@ -5,7 +5,7 @@ input * {
     xkb_options "ctrl:nocaps"
 }
 
-set $term ghostty
+set $term alacritty
 output * bg  $HOME/.config/hypr/wallpaper.jpg fill
 # output * bg /usr/share/backgrounds/default.jxl fill
 exec mako
