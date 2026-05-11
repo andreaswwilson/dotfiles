@@ -1,24 +1,31 @@
+local parsers = {
+  'bash', 'c', 'diff', 'dockerfile', 'go', 'gomod', 'gowork', 'hcl',
+  'html', 'javascript', 'json', 'json5', 'lua', 'markdown', 'markdown_inline',
+  'python', 'query', 'regex', 'rust', 'terraform', 'toml', 'tsx',
+  'typescript', 'vim', 'vimdoc', 'yaml',
+}
+
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    event = { 'BufReadPre', 'BufNewFile' },
+    branch = 'main',
+    lazy = false,
     build = ':TSUpdate',
 
     config = function()
-      local treesitter = require 'nvim-treesitter.configs'
+      require('nvim-treesitter').install(parsers)
 
-      treesitter.setup { -- enable syntax highlighting
-        highlight = {
-          enable = true,
-        },
-        sync_install = false,
-        -- enable indentation
-        indent = { enable = true },
-        -- ensure these language parsers are installed
-        ensure_installed = {},
-        -- Automatically install missing parsers when entering buffer
-        auto_install = true,
-      }
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = parsers,
+        callback = function() vim.treesitter.start() end,
+      })
+
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = parsers,
+        callback = function()
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
     end,
   },
   -- Show context of the current function

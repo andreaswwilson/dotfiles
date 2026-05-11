@@ -76,7 +76,7 @@ disown
 # 1. Apps placed by assign rules in workspaces.conf.
 alacritty &
 evolution &
-slack &
+slack --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations &
 spotify &
 1password &
 (
