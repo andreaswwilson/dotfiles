@@ -30,7 +30,7 @@ case "$chosen" in
   systemctl reboot
   ;;
 "$lock")
-  # Use 'hyprlock' or 'swaylock' or any other locker
+  # Use swaylock or any other locker
   swaylock
   ;;
 "$suspend")

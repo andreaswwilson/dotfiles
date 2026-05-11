@@ -74,7 +74,7 @@ WATCHDOG_PID=$!
 disown
 
 # 1. Apps placed by assign rules in workspaces.conf.
-alacritty &
+ghostty &
 evolution &
 slack --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations &
 spotify &

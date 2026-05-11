@@ -3,10 +3,10 @@ set -euo pipefail
 
 # Install required packages
 sudo pacman -S --noconfirm --needed \
-  firefox git neovim stow go ghostty wl-clipboard hyprlock pamixer \
+  firefox git neovim stow go ghostty wl-clipboard pamixer \
   waybar rofi-wayland github-cli zsh fzf thunar pavucontrol ttf-jetbrains-mono-nerd \
   zoxide atuin starship lsd luarocks lazygit dunst otf-font-awesome npm brightnessctl \
-  blueman bat base-devel opentofu tmux jq pre-commit spotify-launcher hyprpaper hypridle \
+  blueman bat base-devel opentofu tmux jq pre-commit spotify-launcher \
   less shellcheck actionlint obsidian docker
 
 if ! groups "$USER" | grep -q '\bdocker\b'; then

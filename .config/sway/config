@@ -5,8 +5,8 @@ input * {
     xkb_options "ctrl:nocaps"
 }
 
-set $term alacritty
-output * bg  $HOME/.config/hypr/wallpaper.jpg fill
+set $term ghostty
+output * bg  $HOME/.config/sway/wallpaper.jpg fill
 # output * bg /usr/share/backgrounds/default.jxl fill
 exec mako
 exec swayidle -w \

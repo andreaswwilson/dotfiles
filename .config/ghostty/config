@@ -2,6 +2,7 @@
 # Control + Shift + comma on other platforms). Not all config options can be
 shell-integration = zsh
 font-family = "JetBrainsMono Nerd Font Mono"
+font-size = 13
 copy-on-select = "clipboard"
 mouse-hide-while-typing = true
 scrollback-limit = 1000000
