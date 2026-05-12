@@ -7,3 +7,4 @@ copy-on-select = "clipboard"
 mouse-hide-while-typing = true
 scrollback-limit = 1000000
 theme = rose-pine
+unfocused-split-opacity = 0.5
