@@ -65,8 +65,12 @@ if [[ "$USER" == "andreaswilson" ]]; then
   compdef _op op
 fi
 
-source ~/.zsh/completions/_k3d
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+# Defer until after zsh-vi-mode resets zle widgets.
+# Use `command -v` not `$commands[kubectl]` — zvm_exec_commands shadows $commands with a local var.
+zvm_after_init_commands+=(
+  'source ~/.zsh/completions/_k3d'
+  'command -v kubectl > /dev/null && source <(kubectl completion zsh) && compdef k=kubectl'
+)
 
 # opencode
 export PATH=/home/andreas.wilson/.opencode/bin:$PATH
