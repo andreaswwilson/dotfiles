@@ -10,9 +10,9 @@ output * bg  $HOME/.config/sway/wallpaper.jpg fill
 # output * bg /usr/share/backgrounds/default.jxl fill
 exec mako
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
+         timeout 300 'hyprlock' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+         before-sleep 'hyprlock'
 
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
