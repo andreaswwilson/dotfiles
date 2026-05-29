@@ -74,3 +74,6 @@ zvm_after_init_commands+=(
 
 # opencode
 export PATH=/home/andreas.wilson/.opencode/bin:$PATH
+
+# confluence — wraps ~/.local/bin/confluence with 1Password-injected PAT
+confluence() { op run --env-file="$HOME/.config/confluence/env" -- "$HOME/.local/bin/confluence" "$@"; }
