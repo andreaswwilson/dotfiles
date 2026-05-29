@@ -1,0 +1,11 @@
+# Re-include stow built-in defaults (a custom ignore file overrides them entirely)
+\.git
+\.gitignore
+^/README.*
+
+# Repo-only files — must not be symlinked into $HOME
+^/setup
+^/\.zshrc\.bak
+
+# Per-machine Claude state dir (live session data, not shared)
+^/\.claude
