@@ -49,8 +49,9 @@ alias v="nvim"
 alias ls="lsd"
 alias l="ls -la"
 alias lt="ls --tree"
-alias cat="bat --style=grid,header"
+alias cat="bat --style=header-filename"
 alias k="kubectl"
+alias c="cloudctl"
 
 #Eval
 eval "$(fzf --zsh)"
@@ -78,3 +79,4 @@ export PATH=/home/andreas.wilson/.opencode/bin:$PATH
 
 # confluence — wraps ~/.local/bin/confluence with 1Password-injected PAT
 confluence() { op run --env-file="$HOME/.config/confluence/env" -- "$HOME/.local/bin/confluence" "$@"; }
+
