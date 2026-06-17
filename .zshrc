@@ -7,6 +7,7 @@ bindkey -v
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/andreas.wilson/.zshrc'
 
+fpath+=(~/.local/share/zsh/site-functions)
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
