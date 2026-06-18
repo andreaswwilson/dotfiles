@@ -81,8 +81,8 @@ spotify &
 1password &
 (
   wait_1password_window || exit 0
-  # Wait for both chromes before touching focus — prevents 2nd chrome mapping onto WS8.
-  wait_chrome_count 2
+  # Wait for chrome before touching focus — prevents chrome mapping onto WS8.
+  wait_chrome_count 1
   # Resolve GPG first — pinentry steals focus; wtype must not run until pinentry closes.
   PW=$(pass show 1password | head -1)
   [ -n "$PW" ] || exit 0
@@ -100,11 +100,7 @@ UNLOCK_PID=$!
 swaymsg 'workspace number 1; exec google-chrome --restore-last-session --profile-directory="Default"' >/dev/null
 wait_chrome_count 1
 
-# 3. CPA profile → WS3; poll until 2nd chrome window maps.
-swaymsg 'workspace number 3; exec google-chrome --restore-last-session --profile-directory="Profile 1"' >/dev/null
-wait_chrome_count 2
-
-# 4. Wait for unlock to finish before switching to WS2 — prevents workspace switch
+# 3. Wait for unlock to finish before switching to WS2 — prevents workspace switch
 #    from stealing focus off 1Password mid-wtype.
 wait_unlock_done "$UNLOCK_PID"
 swaymsg 'workspace number 2' >/dev/null
