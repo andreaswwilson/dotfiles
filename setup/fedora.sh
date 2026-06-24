@@ -29,9 +29,10 @@ sudo dnf copr enable atim/starship -y
 sudo dnf copr enable dejan/lazygit -y
 sudo dnf copr enable scottames/ghostty -y
 sudo dnf copr enable solopasha/hyprland -y
+sudo dnf copr enable frodo/zellij -y
 
 sudo dnf install -y git gh neovim google-chrome-stable stow 1password 1password-cli zsh go lsd fd ripgrep \
-  fzf atuin zoxide starship pass ghostty bat lazygit \
+  fzf atuin zoxide starship pass ghostty bat lazygit zellij \
   docker-ce docker-ce-cli docker-ce-rootless-extras containerd.io docker-buildx-plugin docker-compose-plugin \
   ansible nss-tools kubectl helm tofu pre-commit cargo wtype hyprlock
 if rpm -q moby-engine-nano moby-filesystem >/dev/null 2>&1; then
@@ -39,8 +40,6 @@ if rpm -q moby-engine-nano moby-filesystem >/dev/null 2>&1; then
 fi
 command -v twingate >/dev/null 2>&1 || (curl -s https://binaries.twingate.com/client/linux/install.sh | sudo bash && sudo twingate setup)
 command -v sd >/dev/null 2>&1 || cargo install sd
-# zellij not in Fedora repos; COPR is stale — build latest from crates.io
-command -v zellij >/dev/null 2>&1 || cargo install zellij
 command -v tflint >/dev/null 2>&1 || (curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash)
 
 # Change shell only if not already zsh
