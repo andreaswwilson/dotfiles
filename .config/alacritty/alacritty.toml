@@ -1,0 +1,21 @@
+[general]
+import = ["~/.config/alacritty/themes/rose-pine.toml"]
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font Mono" }
+size = 13
+
+[selection]
+save_to_clipboard = true
+
+[mouse]
+hide_when_typing = true
+
+# Alacritty caps history at 100000; Ghostty's 1000000 is not representable here.
+[scrolling]
+history = 100000
+
+# Consumed by the Zellij auto-start guard in ~/.zshrc — scopes auto-launch to
+# Alacritty only, leaving Ghostty as a plain shell.
+[env]
+AUTO_ZELLIJ = "1"

@@ -67,6 +67,14 @@ if [[ "$USER" == "andreaswilson" ]]; then
   compdef _op op
 fi
 
+# Auto-start Zellij only in Alacritty (AUTO_ZELLIJ set by alacritty.toml [env]).
+# Ghostty unaffected. Attaches to existing session; closes shell when Zellij exits.
+if [[ -n "$AUTO_ZELLIJ" && -z "$ZELLIJ" ]]; then
+  export ZELLIJ_AUTO_ATTACH=true
+  export ZELLIJ_AUTO_EXIT=true
+  eval "$(zellij setup --generate-auto-start zsh)"
+fi
+
 # Defer until after zsh-vi-mode resets zle widgets.
 # Use `command -v` not `$commands[kubectl]` — zvm_exec_commands shadows $commands with a local var.
 zvm_after_init_commands+=(
