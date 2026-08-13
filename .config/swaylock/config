@@ -1,0 +1,18 @@
+image=$HOME/.config/sway/wallpaper.jpg
+scaling=fill
+
+indicator-radius=100
+indicator-thickness=10
+font=JetBrainsMono Nerd Font
+
+# rose-pine
+ring-color=31748f
+ring-ver-color=ebbcba
+ring-wrong-color=eb6f92
+inside-color=1f1d2e
+inside-ver-color=1f1d2e
+inside-wrong-color=1f1d2e
+key-hl-color=ebbcba
+text-color=e0def4
+line-color=00000000
+separator-color=00000000
