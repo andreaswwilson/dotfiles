@@ -14,14 +14,14 @@ wait_sway_ready() {
 
 lock_input() {
   swaymsg 'input type:keyboard events disabled' >/dev/null 2>&1 || return 1
-  swaymsg 'input type:pointer events disabled'  >/dev/null 2>&1 || return 1
+  swaymsg 'input type:pointer events disabled' >/dev/null 2>&1 || return 1
   swaymsg 'input type:touchpad events disabled' >/dev/null 2>&1 || return 1
   LOCK_OK=1
 }
 
 unlock_input() {
   swaymsg 'input type:keyboard events enabled' >/dev/null 2>&1
-  swaymsg 'input type:pointer events enabled'  >/dev/null 2>&1
+  swaymsg 'input type:pointer events enabled' >/dev/null 2>&1
   swaymsg 'input type:touchpad events enabled' >/dev/null 2>&1
 }
 
@@ -74,7 +74,7 @@ WATCHDOG_PID=$!
 disown
 
 # 1. Apps placed by assign rules in workspaces.conf.
-ghostty &
+alacritty &
 evolution &
 slack --ozone-platform-hint=auto --enable-features=WaylandWindowDecorations &
 spotify &
