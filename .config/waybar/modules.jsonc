@@ -9,6 +9,9 @@
   //     "default": "",
   //   },
   // },
+  "idle_inhibitor": {
+    "timeout": 30,
+  },
   "network": {
     "interval": 5,
     "format-wifi": "󰖩",
