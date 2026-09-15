@@ -30,7 +30,7 @@ case "$chosen" in
   systemctl reboot
   ;;
 "$lock")
-  hyprlock
+  loginctl lock-session
   ;;
 "$suspend")
   systemctl suspend
