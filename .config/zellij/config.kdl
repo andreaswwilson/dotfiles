@@ -2,3 +2,10 @@ theme "rose-pine"
 default_layout "compact-shortcuts"
 show_startup_tips false
 show_release_notes false
+
+keybinds {
+    normal {
+        unbind "Alt Up"
+        unbind "Alt Down"
+    }
+}
