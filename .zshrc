@@ -51,6 +51,7 @@ alias l="ls -la"
 alias lt="ls --tree"
 alias cat="bat --style=header-filename"
 alias k="kubectl"
+alias codex="codex --profile agent-routing --model gpt-5.6-sol -c model_reasoning_effort=medium"
 alias c="cloudctl"
 
 #Eval
