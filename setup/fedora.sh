@@ -28,13 +28,12 @@ EOF
 sudo dnf copr enable atim/starship -y
 sudo dnf copr enable dejan/lazygit -y
 sudo dnf copr enable scottames/ghostty -y
-sudo dnf copr enable solopasha/hyprland -y
 sudo dnf copr enable frodo/zellij -y
 
 sudo dnf install -y git gh neovim google-chrome-stable stow 1password 1password-cli zsh go lsd fd ripgrep \
   fzf atuin zoxide starship pass ghostty bat lazygit zellij \
   docker-ce docker-ce-cli docker-ce-rootless-extras containerd.io docker-buildx-plugin docker-compose-plugin \
-  ansible nss-tools kubectl helm tofu pre-commit cargo wtype hyprlock
+  ansible nss-tools kubectl helm tofu pre-commit cargo wtype
 if rpm -q moby-engine-nano moby-filesystem >/dev/null 2>&1; then
   sudo dnf remove -y moby-engine-nano moby-filesystem
 fi
