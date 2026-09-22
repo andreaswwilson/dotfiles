@@ -6,6 +6,7 @@
 # Repo-only files — must not be symlinked into $HOME
 ^/setup
 ^/\.zshrc\.bak
+^/AGENTS.md
 
 # Per-machine Claude state dir (live session data, not shared)
 ^/\.claude
