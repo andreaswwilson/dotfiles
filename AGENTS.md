@@ -12,3 +12,7 @@ gh auth switch --user andreaswilson-visma  # after
 
 Leave the git identity alone. `.git/config` already pins `andreasw@gmail.com` for this
 repo, and `gh auth switch` moves credentials, not commit authorship.
+
+## Branching
+
+Commit and push straight to `main`. No branch, no pull request.
