@@ -56,6 +56,7 @@ alias codex="codex --profile agent-routing --model gpt-5.6-sol -c model_reasonin
 alias c="cloudctl"
 
 #Eval
+FZF_ALT_C_COMMAND=
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
