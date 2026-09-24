@@ -16,3 +16,7 @@ repo, and `gh auth switch` moves credentials, not commit authorship.
 ## Branching
 
 Commit and push straight to `main`. No branch, no pull request.
+
+## Displays
+
+A monitor stays dark or kanshi misapplies a profile: read `.config/kanshi/README.md` first.
