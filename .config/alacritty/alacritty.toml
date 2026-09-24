@@ -19,3 +19,8 @@ history = 100000
 # Alacritty only, leaving Ghostty as a plain shell.
 [env]
 AUTO_ZELLIJ = "1"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Super"
+command = { program = "sh", args = ["-c", "alacritty msg get-config -w -1 | jq -e '.window.padding.x > 0' >/dev/null && alacritty msg config -w -1 --reset || alacritty msg config -w -1 window.padding.x=1280"] }
