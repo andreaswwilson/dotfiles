@@ -83,6 +83,7 @@ fi
 zvm_after_init_commands+=(
   'source ~/.zsh/completions/_k3d'
   'command -v kubectl > /dev/null && source <(kubectl completion zsh) && compdef k=kubectl'
+  'bindkey -M viins "^r" atuin-search-viins'
 )
 
 # opencode
