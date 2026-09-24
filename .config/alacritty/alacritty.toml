@@ -22,5 +22,5 @@ AUTO_ZELLIJ = "1"
 
 [[keyboard.bindings]]
 key = "C"
-mods = "Super"
+mods = "Alt"
 command = { program = "sh", args = ["-c", "alacritty msg get-config -w -1 | jq -e '.window.padding.x > 0' >/dev/null && alacritty msg config -w -1 --reset || alacritty msg config -w -1 window.padding.x=1280"] }
