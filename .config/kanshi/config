@@ -1,0 +1,27 @@
+output eDP-1 mode 2880x1800@90.001Hz scale 2
+
+profile laptop {
+	output eDP-1
+}
+
+profile philips {
+	output eDP-1 position 0,0
+	output "Philips Consumer Electronics Company PHL 346E2C UK02334026660" position 1440,0
+}
+
+profile dell {
+	output "Dell Inc. Dell U4924DW FLYY0S3" mode 5120x1440@59.977Hz position 0,0
+	output eDP-1 position 5120,0
+}
+
+profile samsung {
+	output "Samsung Electric Company LS49C95xU HNTL300807" mode 5120x1440 position 0,0
+	output eDP-1 position 5120,0
+}
+
+# HDMI-A-1 must come before the description line: kanshi matches in order.
+profile samsung-usbc {
+	output HDMI-A-1 mode 5120x1440 position 0,0
+	output "Samsung Electric Company LS49C95xU HNTL300807" disable
+	output eDP-1 position 5120,0
+}
