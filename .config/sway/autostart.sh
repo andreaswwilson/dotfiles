@@ -43,7 +43,7 @@ wait_chrome_count() {
 }
 
 count_1password() {
-  swaymsg -t get_tree | grep -c '"app_id": "1password"'
+  swaymsg -t get_tree | grep -c '"app_id": "com.onepassword.OnePassword"'
 }
 
 wait_1password_window() {
@@ -87,11 +87,11 @@ spotify &
   PW=$(pass show 1password | head -1)
   [ -n "$PW" ] || exit 0
   [ "$LOCK_OK" = 1 ] || exit 0
-  swaymsg '[app_id="1password"] focus' >/dev/null
+  swaymsg '[app_id="^com\.onepassword\.OnePassword$"] focus' >/dev/null
   sleep 0.2
   printf '%s' "$PW" | wtype -s 50 -
   # Re-focus before Return: Chrome window may have mapped mid-type.
-  swaymsg '[app_id="1password"] focus' >/dev/null
+  swaymsg '[app_id="^com\.onepassword\.OnePassword$"] focus' >/dev/null
   wtype -k Return
 ) &
 UNLOCK_PID=$!
