@@ -10,3 +10,6 @@
 
 # Per-machine Claude state dir (live session data, not shared)
 ^/\.claude
+
+# Linked by hand with an absolute path: stow only makes relative links, which systemd ignores for .wants dirs
+^/\.config/systemd/user/sway-session\.target\.wants
