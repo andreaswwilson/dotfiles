@@ -37,7 +37,8 @@
 #pulseaudio,
 #network,
 #custom-power,
-#custom-bluetooth {
+#custom-bluetooth,
+#custom-github {
   background-color: @surface;
   padding: 0.5rem 1rem;
   margin: 5px 0;
@@ -47,7 +48,8 @@
 #pulseaudio:hover,
 #network:hover,
 #custom-power:hover,
-#custom-bluetooth:hover {
+#custom-bluetooth:hover,
+#custom-github:hover {
   color: @text;
 }
 
@@ -77,13 +79,9 @@
 #battery,
 #network,
 #custom-power,
-#custom-bluetooth {
+#custom-bluetooth,
+#custom-github {
   color: @subtle;
   border-radius: 1rem 1rem 1rem 1rem;
   margin-left: 0.5rem;
-}
-
-#idle-inhibitor.activated,
-#idle_inhibitor.activated {
-  color: @text;
 }

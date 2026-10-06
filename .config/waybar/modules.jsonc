@@ -9,8 +9,12 @@
   //     "default": "",
   //   },
   // },
-  "idle_inhibitor": {
-    "timeout": 30,
+  "custom/github": {
+    "exec": "grep -sv '^0$' \"$XDG_RUNTIME_DIR/githubclearq/unread\"",
+    "interval": 5,
+    "format": "󰊤 {}",
+    "on-click": "xdg-open https://github.com/notifications",
+    "tooltip-format": "Unread GitHub notifications",
   },
   "network": {
     "interval": 5,

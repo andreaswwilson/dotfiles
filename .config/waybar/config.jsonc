@@ -11,7 +11,7 @@
   "modules-center": ["clock"],
 
   "modules-right": [
-    "idle_inhibitor",
+    "custom/github",
     "network",
     "custom/bluetooth",
     "pulseaudio",
