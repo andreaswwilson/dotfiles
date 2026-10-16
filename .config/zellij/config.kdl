@@ -2,8 +2,10 @@ theme "rose-pine"
 default_layout "compact-shortcuts"
 show_startup_tips false
 show_release_notes false
+post_command_discovery_hook r#"echo "$RESURRECT_COMMAND" | sed -E '/^claude( |$)/{/ (--resume|-r|--continue|-c)( |$)/!s/$/ --resume/}'"#
 
 keybinds {
+    unbind "Ctrl q"
     normal {
         unbind "Alt Up"
         unbind "Alt Down"
