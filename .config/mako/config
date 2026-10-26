@@ -1,6 +1,7 @@
 output=DP-3
 font=JetBrainsMono Nerd Font Mono 14
 width=400
+height=300
 max-visible=10
 anchor=top-right
 margin=50,10,0,0
