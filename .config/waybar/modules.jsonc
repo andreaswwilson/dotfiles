@@ -21,6 +21,7 @@
     "interval": 5,
     "format-wifi": "󰖩",
     "format-ethernet": "󰈀",
+    "format-linked": "󰤫",
     "format-disconnected": "󰖪",
     "format-disabled": "󰖪",
     "tooltip-format-wifi": "{essid}\n{ipaddr}/{cidr}\n{frequency} MHz · {signaldBm} dBm",
