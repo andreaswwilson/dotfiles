@@ -1,12 +1,13 @@
 layout {
     pane size=1 borderless=true {
         plugin location="https://github.com/dj95/zjstatus/releases/download/v0.25.0/zjstatus.wasm" {
-            format_left  "{mode} {tabs}"
+            format_left  "{mode}{tabs}"
             format_right "#[fg=#e0def4,bg=#21202e]{session} "
             format_space "#[bg=#21202e]"
 
-            mode_normal          "#[fg=#21202e,bg=#31748f,bold] {name} "
-            mode_default_to_mode "normal"
+            mode_normal          "#[bg=#21202e]"
+            mode_locked          "#[fg=#21202e,bg=#f6c177,bold] {name} #[bg=#21202e] "
+            mode_default_to_mode "locked"
 
             tab_normal         "#[fg=#e0def4,bg=#26233a] {name} "
             tab_active         "#[fg=#21202e,bg=#31748f,bold] {name} "
