@@ -19,9 +19,15 @@ profile samsung {
 	output eDP-1 enable position 5120,0
 }
 
-# HDMI-A-1 must come before the description line: kanshi matches in order.
+# In the -usbc profiles, HDMI-A-1 must come before the description line: kanshi matches in order.
 profile samsung-usbc {
 	output HDMI-A-1 enable mode 5120x1440 position 0,0
 	output "Samsung Electric Company LS49C95xU HNTL300807" disable
+	output eDP-1 enable position 5120,0
+}
+
+profile dell-usbc {
+	output HDMI-A-1 enable mode 5120x1440@59.977Hz position 0,0
+	output "Dell Inc. Dell U4924DW JT0X0S3" disable
 	output eDP-1 enable position 5120,0
 }
