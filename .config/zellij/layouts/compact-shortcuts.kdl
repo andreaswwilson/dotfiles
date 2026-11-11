@@ -4,6 +4,7 @@ layout {
             format_left  "{mode}{tabs}"
             format_right "#[fg=#e0def4,bg=#21202e]{session} "
             format_space "#[bg=#21202e]"
+            format_hide_on_overlength "true"
 
             mode_normal          "#[bg=#21202e]"
             mode_locked          "#[fg=#21202e,bg=#f6c177,bold] {name} #[bg=#21202e] "
