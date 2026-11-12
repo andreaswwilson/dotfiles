@@ -1,22 +1,6 @@
 layout {
     pane size=1 borderless=true {
-        plugin location="https://github.com/dj95/zjstatus/releases/download/v0.25.0/zjstatus.wasm" {
-            format_left  "{mode}{tabs}"
-            format_space "#[bg=#21202e]"
-
-            mode_normal          "#[bg=#21202e]"
-            mode_locked          "#[fg=#21202e,bg=#f6c177,bold] {name} #[bg=#21202e] "
-            mode_default_to_mode "locked"
-
-            tab_normal         "#[fg=#e0def4,bg=#26233a] {name} "
-            tab_active         "#[fg=#21202e,bg=#31748f,bold] {name} "
-            tab_normal_bell    "#[fg=#21202e,bg=#eb6f92,bold] {name} {bell_indicator}"
-            tab_bell_indicator "! "
-
-            tab_display_count         "4"
-            tab_truncate_start_format "#[fg=#908caa,bg=#21202e] ← +{count} "
-            tab_truncate_end_format   "#[fg=#908caa,bg=#21202e] +{count} → "
-        }
+        plugin location="compact-bar"
     }
     pane
     pane size=1 borderless=true {
